@@ -1,0 +1,37 @@
+server:
+  servlet:
+    context-path: /kyie
+
+  port: 9999
+
+
+spring:
+  profiles:
+    active: dev
+  mvc:
+    static-path-pattern: /static/**
+  thymeleaf:
+    cache: false
+    session:
+      store-type: redis
+    datasource:
+      druid:
+        stat-view-servlet:
+          login-username: admin
+          login-password: admin
+    jackson:
+      date-format: yyyy-MM-dd HH:mm:ss
+      time-zone: GMT+8
+  mybatis-plus:
+    mapper-locations: classpath:mapper/*.xml
+    global-config:
+      banner: false
+  loginCode:
+    expiration: 2
+    width: 111
+    height: 36
+    digit: 2
+  security:
+    max-session: 10
+    prevents-login: true
+
