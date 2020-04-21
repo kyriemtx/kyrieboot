@@ -22,16 +22,16 @@ spring:
     jackson:
       date-format: yyyy-MM-dd HH:mm:ss
       time-zone: GMT+8
-  mybatis-plus:
-    mapper-locations: classpath:mapper/*.xml
-    global-config:
-      banner: false
-  loginCode:
-    expiration: 2
-    width: 111
-    height: 36
-    digit: 2
-  security:
-    max-session: 10
-    prevents-login: true
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  global-config:
+    banner: false
+loginCode:
+  expiration: 2
+  width: 111
+  height: 36
+  digit: 2
+security:
+  max-session: 10
+  prevents-login: true
 

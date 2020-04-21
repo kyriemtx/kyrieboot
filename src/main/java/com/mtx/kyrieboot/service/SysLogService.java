@@ -14,6 +14,13 @@ import javax.servlet.http.HttpServletRequest;
  **/
 public interface SysLogService {
 
+    /**
+     * 保存日志
+     * @param request
+     * @param message
+     * @param name
+     * @return
+     */
     int saveLoginLog(HttpServletRequest request, String message, String name);
 
 
