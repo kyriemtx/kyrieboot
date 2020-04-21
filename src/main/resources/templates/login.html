@@ -119,7 +119,8 @@
                         uuidCode: vm.uuidCode
                     },
                     success: function (res) {
-                        if (res.code === 200) {
+                        debugger;
+                        if (res.respCode == 200) {
                             location.href = 'http://' + location.host + "/" + contextPath;
                         } else {
                             vm.$message.error(res.message);

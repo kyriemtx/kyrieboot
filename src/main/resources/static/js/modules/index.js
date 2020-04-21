@@ -16,8 +16,8 @@ var vm = new Vue({
             url: 'menu/getMenulist',
             type: 'GET',
             success: function (res) {
-                vm.loginName = res.data.name;
-                vm.menuList = res.data.menuList;
+                vm.loginName = res.respData.name;
+                vm.menuList = res.respData.menuList;
             }
         })
     }
