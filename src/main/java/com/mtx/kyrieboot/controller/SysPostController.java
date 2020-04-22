@@ -1,7 +1,7 @@
 package com.mtx.kyrieboot.controller;
 
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,11 +21,9 @@ public class SysPostController {
     }
 
     @GetMapping("/update")
-    public String update(String name, String authority, String id, Model model){
-       /* model.addAttribute("name",name);
-        model.addAttribute("authority",authority);
-        model.addAttribute("id",id);*/
-        return "module/role/updateRole";
+    public String update(Integer postId, Model model){
+        model.addAttribute("id",postId);
+        return "module/post/updatePost";
     }
 
     @GetMapping("/add")

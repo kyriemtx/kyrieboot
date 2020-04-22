@@ -42,4 +42,19 @@ public interface SysPostService {
      */
     int insertSysPost(SysPost sysPost);
 
+
+    /**
+     * 修改岗位信息
+     * @param sysPost
+     * @return
+     */
+    int updateSysPost(SysPost sysPost);
+
+    /**
+     * 删除岗位信息
+     * @param postId
+     * @return
+     */
+    int deleteSysPost(Integer postId);
+
 }

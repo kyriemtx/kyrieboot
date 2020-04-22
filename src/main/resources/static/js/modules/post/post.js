@@ -24,11 +24,11 @@ var vm = new Vue({
             console.log(row);
             layer.open({
                 type: 2,
-                title: '修改',
+                title: '编辑',
                 maxmin: true,
                 shadeClose: false, // 点击遮罩关闭层
                 area: ['800px', '520px'],
-                content: context + 'post/update?name='+row.name+"&authority="+row.authority+"&id="+row.id, // iframe的url
+                content: context + 'post/update?postId='+row.postId,
                 end: function () {
                     vm.getPostList();
                 }
@@ -37,13 +37,13 @@ var vm = new Vue({
         handleDelete:function(row,tableData) {
             layer.confirm("您确定要删除吗？", function (index) {
                 $.ajax({
-                    url: context + 'post/deletePost?id=' + row.id,
+                    url: context + 'post/deletePost?postId=' + row.postId,
                     type: 'GET',
                     success: function (res) {
                         if (res.respCode == 200){
                             if (res.respData.code == 200){
                                 layer.msg("操作成功");
-                                vm.getRoleList();
+                                vm.getPostList();
                             } else {
                                 layer.msg("操作失败");
                             }

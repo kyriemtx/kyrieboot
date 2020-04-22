@@ -5,12 +5,13 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.base.AjaxResult;
 import com.mtx.kyrieboot.entity.SysPost;
-import com.mtx.kyrieboot.service.SysMenuService;
 import com.mtx.kyrieboot.service.SysPostService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 /**
@@ -20,6 +21,7 @@ import java.util.List;
  * @Date 2020/4/22 13:26
  **/
 @RestController
+@Slf4j
 @RequestMapping("/post")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class SysPostRealController {
@@ -27,8 +29,6 @@ public class SysPostRealController {
 
     @Autowired
     private SysPostService sysPostService;
-    @Autowired
-    private SysMenuService sysMenuService;
 
     @GetMapping("/getPostInfo")
     public AjaxResult getRoleInfo(@RequestParam("page") int page,
@@ -76,5 +76,60 @@ public class SysPostRealController {
         return AjaxResult.success(jsonObject);
     }
 
+    @PostMapping("/updatePost")
+    @ResponseBody
+    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    public AjaxResult updateRole(@RequestBody SysPost sysPost){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            SysPost post = sysPostService.findByName(sysPost.getPostName());
+            if(post != null){
+                sysPostService.updateSysPost(sysPost);
+                jsonObject.put("code",200);
+            }else {
+                log.info("【修改岗位信息接口】，当前岗位信息不存在");
+                jsonObject.put("code", 500);
+            }
+        } catch (Exception e) {
+            jsonObject.put("code", 500);
+        }
+        return AjaxResult.success(jsonObject);
+    }
+
+
+    @GetMapping("/getPost")
+    @ResponseBody
+    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    public AjaxResult selectByPostId(Integer postId){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            if(postId != 0 || postId != null){
+                SysPost sysPost = sysPostService.selectById(postId);
+                jsonObject.put("data",sysPost);
+                jsonObject.put("code",200);
+            }
+        }catch (Exception e){
+            jsonObject.put("code", 500);
+        }
+        return AjaxResult.success(jsonObject);
+    }
+
+
+    @GetMapping("/deletePost")
+    @ResponseBody
+    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    public AjaxResult updateSysPost(Integer postId){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            if(postId != 0 || postId != null){
+                int res = sysPostService.deleteSysPost(postId);
+                jsonObject.put("result",res);
+                jsonObject.put("code",200);
+            }
+        }catch (Exception e){
+            jsonObject.put("code", 500);
+        }
+        return AjaxResult.success(jsonObject);
+    }
 
 }

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.entity.SysPost;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -35,5 +36,12 @@ public interface SysPostMapper extends BaseMapper<SysPost> {
     @Select("select p.post_id,p.post_name,p.post_code,p.post_sort,p.post_status,p.create_time,p.update_time,p.remark from sys_post p where post_id =#{postId}")
     SysPost selectById(@Param("postId") int postId);
 
+    /**
+     * 删除岗位信息
+     * @param postId
+     * @return
+     */
+    @Delete("delete from sys_post where post_id =#{postId}")
+    int deleteByPostId(@Param("postId") int postId);
 
 }

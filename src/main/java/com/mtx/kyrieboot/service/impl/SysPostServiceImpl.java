@@ -53,4 +53,20 @@ public class SysPostServiceImpl implements SysPostService {
         log.info("【新增岗位信息接口】,返回参数：res:{}",res);
         return res;
     }
+
+    @Override
+    public int updateSysPost(SysPost sysPost) {
+        log.info("【修改岗位信息接口】,请求参数：sysPost:{}",JSON.toJSONString(sysPost));
+        int res = sysPostMapper.updateById(sysPost);
+        log.info("【修改岗位信息接口】,返回参数：res:{}",res);
+        return res;
+    }
+
+    @Override
+    public int deleteSysPost(Integer postId) {
+        log.info("【删除岗位信息接口】,请求参数：postId:{}",postId);
+        int res = sysPostMapper.deleteByPostId(postId);
+        log.info("【删除岗位信息接口】,返回参数：res:{}",res);
+        return res;
+    }
 }
