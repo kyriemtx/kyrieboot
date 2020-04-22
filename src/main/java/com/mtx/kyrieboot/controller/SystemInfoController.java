@@ -19,8 +19,4 @@ public class SystemInfoController {
         return "module/system/server";
     }
 
-    @RequestMapping("/introduce")
-    public String introduce(){
-        return "module/system/introduce";
-    }
 }

@@ -24,8 +24,8 @@ var app = new Vue({
                     parent.layer.alert("Connection error");
                 },
                 success : function(data) {
-                    if (data.code === 200) {
-                        app.data = data.data.menuList;
+                    if (data.respCode == 200) {
+                        app.data = data.respData.menuList;
                     }
                 }
             });
@@ -80,12 +80,12 @@ function addRole(){
             parent.layer.alert("Connection error");
         },
         success : function(data) {
-            if (data.code === 200) {
-                if (data.data.code === 200){
+            if (data.respCode == 200) {
+                if (data.respData.code == 200){
                     parent.layer.msg("操作成功");
-                } else if (data.data.code === 501){
+                } else if (data.respData.code == 501){
                     parent.layer.msg("该角色已存在，操作失败");
-                } else if (data.data.code === 500){
+                } else if (data.respData.code == 500){
                     parent.layer.msg("操作失败");
                 }
                 var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引

@@ -19,11 +19,11 @@ var app = new Vue({
                     parent.layer.alert("Connection error");
                 },
                 success : function(data) {
-                    if (data.code === 200) {
+                    if (data.respCode == 200) {
                         $("#menuLevel").html("");
-                        for (var i = 0; i < data.data.menuLevel.length; i++) {
+                        for (var i = 0; i < data.respData.menuLevel.length; i++) {
                             var level = "";
-                            level += "<option value='"+data.data.menuLevel[i]+"'>"+data.data.menuLevel[i]+"</option>";
+                            level += "<option value='"+data.respData.menuLevel[i]+"'>"+data.respData.menuLevel[i]+"</option>";
                             $("#menuLevel").append(level);
                             level = "";
                         }
@@ -49,15 +49,16 @@ var app = new Vue({
                         parent.layer.alert("Connection error");
                     },
                     success: function (data) {
-                        if (data.code === 200) {
+                        debugger
+                        if (data.respCode == 200) {
                             $("#menuNames").show();
                             $("#menuNames").html("");
                             $("#menuNames").append("<label class='col-sm-3 control-label'>一级菜单：</label>");
                             var level = "";
                             level += "<div class='layui-input-inline'>";
                             level += "<select id='menuLevel' name='modules' lay-verify='required' lay-search='' style='width: 235px;height: 33.9px;border: 1px solid #ccc;border-radius: 4px;margin-left: 6%;'>";
-                            for (var i = 0; i < data.data.menuNames.length; i++){
-                                level += "<option value='"+data.data.menuNames[i].id+"'>"+data.data.menuNames[i].menuName+"</option>";
+                            for (var i = 0; i < data.respData.menuNames.length; i++){
+                                level += "<option value='"+data.respData.menuNames[i].id+"'>"+data.respData.menuNames[i].menuName+"</option>";
                             }
                             level += "</select></div></div>";
                             $("#menuNames").append(level);
@@ -147,10 +148,10 @@ function updateUser(){
             parent.layer.alert("Connection error");
         },
         success : function(data) {
-            if (data.code === 200) {
-                if (data.data.code === 200){
+            if (data.respCode == 200) {
+                if (data.respData.code == 200){
                     parent.layer.msg("操作成功");
-                } else if(data.data.code === 200){
+                } else if(data.respData.code == 200){
                     parent.layer.msg("操作失败");
                 }
                 var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引

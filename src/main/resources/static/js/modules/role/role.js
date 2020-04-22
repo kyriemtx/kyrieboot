@@ -40,8 +40,8 @@ var vm = new Vue({
                     url: context + 'role/deleteRole?id=' + row.id,
                     type: 'GET',
                     success: function (res) {
-                        if (res.code === 200){
-                            if (res.data.code === 200){
+                        if (res.respCode == 200){
+                            if (res.respData.code == 200){
                                 layer.msg("操作成功");
                                 vm.getRoleList();
                             } else {
@@ -66,10 +66,10 @@ var vm = new Vue({
                 url: context + 'role/getRoleInfo?page=' + this.current_page + '&page_size=' + this.page_size,
                 type: 'GET',
                 success: function (res) {
-                    vm.tableData = res.data.sysRoleList;
-                    vm.total = res.data.total;
-                    vm.page_size = res.data.page_size;
-                    vm.current_page = res.data.page;
+                    vm.tableData = res.respData.sysRoleList;
+                    vm.total = res.respData.total;
+                    vm.page_size = res.respData.page_size;
+                    vm.current_page = res.respData.page;
                 }
             });
         }

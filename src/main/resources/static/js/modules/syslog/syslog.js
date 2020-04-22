@@ -24,10 +24,10 @@ var vm = new Vue({
                 type: 'GET',
                 success: function (res) {
                     console.log(res);
-                    vm.tableData = res.data.sysLogList;
-                    vm.total = res.data.total;
-                    vm.page_size = res.data.page_size;
-                    vm.current_page = res.data.page;
+                    vm.tableData = res.respData.sysLogList;
+                    vm.total = res.respData.total;
+                    vm.page_size = res.respData.page_size;
+                    vm.current_page = res.respData.page;
                 }
             });
         }

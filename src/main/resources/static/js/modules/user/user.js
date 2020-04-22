@@ -42,8 +42,8 @@ $().ready(function(){
                         url: context + 'user/editPassword?id='+row.id,
                         type: 'GET',
                         success: function (res) {
-                            if (res.code === 200){
-                                if (res.data.code === 200){
+                            if (res.respCode == 200){
+                                if (res.respData.code == 200){
                                     layer.msg("重置密码操作成功");
                                     vm.getUserList();
                                 } else if(res.data.code === 500){
@@ -62,8 +62,8 @@ $().ready(function(){
                         url: context + 'user/deleteUser?id=' + row.id,
                         type: 'GET',
                         success: function (res) {
-                            if (res.code === 200){
-                               if (res.data.code === 200){
+                            if (res.respCode == 200){
+                               if (res.respData.code == 200){
                                    layer.msg("操作成功");
                                    vm.getUserList();
                                } else if(res.data.code === 500){
@@ -88,10 +88,10 @@ $().ready(function(){
                     url: context + 'user/getUserInfo?page=' + this.current_page + '&page_size=' + this.page_size,
                     type: 'GET',
                     success: function (res) {
-                        vm.tableData = res.data.sysUserList;
-                        vm.total = res.data.total;
-                        vm.page_size = res.data.page_size;
-                        vm.current_page = res.data.page;
+                        vm.tableData = res.respData.sysUserList;
+                        vm.total = res.respData.total;
+                        vm.page_size = res.respData.page_size;
+                        vm.current_page = res.respData.page;
                     }
                 });
             }
