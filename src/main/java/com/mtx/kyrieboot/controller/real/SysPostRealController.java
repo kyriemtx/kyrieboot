@@ -4,22 +4,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.base.AjaxResult;
-import com.mtx.kyrieboot.entity.SysMenu;
-import com.mtx.kyrieboot.entity.SysMenuRole;
 import com.mtx.kyrieboot.entity.SysPost;
-import com.mtx.kyrieboot.entity.SysRole;
 import com.mtx.kyrieboot.service.SysMenuService;
 import com.mtx.kyrieboot.service.SysPostService;
-import com.mtx.kyrieboot.utils.UUIDUtils;
-import com.mtx.kyrieboot.vo.MenuListVo;
-import com.mtx.kyrieboot.vo.RoleVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
