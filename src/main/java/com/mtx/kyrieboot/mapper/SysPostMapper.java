@@ -34,7 +34,7 @@ public interface SysPostMapper extends BaseMapper<SysPost> {
     IPage<SysPost> getAll(Page page);
 
     @Select("select p.post_id,p.post_name,p.post_code,p.post_sort,p.post_status,p.create_time,p.update_time,p.remark from sys_post p where post_id =#{postId}")
-    SysPost selectById(@Param("postId") int postId);
+    SysPost selectByPostId(@Param("postId") String postId);
 
     /**
      * 删除岗位信息
@@ -42,6 +42,6 @@ public interface SysPostMapper extends BaseMapper<SysPost> {
      * @return
      */
     @Delete("delete from sys_post where post_id =#{postId}")
-    int deleteByPostId(@Param("postId") int postId);
+    int deleteByPostId(@Param("postId") String postId);
 
 }

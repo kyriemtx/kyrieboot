@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.base.AjaxResult;
 import com.mtx.kyrieboot.entity.SysPost;
 import com.mtx.kyrieboot.service.SysPostService;
+import com.mtx.kyrieboot.utils.UUIDUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,8 @@ public class SysPostRealController {
         try{
             SysPost post = sysPostService.findByName(sysPost.getPostName());
             if (post == null){
+                String postId = UUIDUtils.getUUID();
+                sysPost.setPostId(postId);
                 sysPostService.insertSysPost(sysPost);
                 jsonObject.put("code",200);
             } else {
@@ -100,10 +103,10 @@ public class SysPostRealController {
     @GetMapping("/getPost")
     @ResponseBody
     @Transactional(rollbackFor={RuntimeException.class, Exception.class})
-    public AjaxResult selectByPostId(Integer postId){
+    public AjaxResult selectByPostId(String postId){
         JSONObject jsonObject = new JSONObject();
         try {
-            if(postId != 0 || postId != null){
+            if(postId != null || !postId.equals("")){
                 SysPost sysPost = sysPostService.selectById(postId);
                 jsonObject.put("data",sysPost);
                 jsonObject.put("code",200);
@@ -118,10 +121,10 @@ public class SysPostRealController {
     @GetMapping("/deletePost")
     @ResponseBody
     @Transactional(rollbackFor={RuntimeException.class, Exception.class})
-    public AjaxResult updateSysPost(Integer postId){
+    public AjaxResult updateSysPost(String postId){
         JSONObject jsonObject = new JSONObject();
         try {
-            if(postId != 0 || postId != null){
+            if(postId != null || !postId.equals("")){
                 int res = sysPostService.deleteSysPost(postId);
                 jsonObject.put("result",res);
                 jsonObject.put("code",200);

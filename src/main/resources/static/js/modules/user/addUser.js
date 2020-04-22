@@ -19,13 +19,13 @@ var app = new Vue({
                     parent.layer.alert("Connection error");
                 },
                 success : function(data) {
-                    if (data.code === 200) {
+                    if (data.respCode == 200) {
                         $("#userRole").html("");
                         var level = "";
                         level += "<div class='layui-input-inline'>";
                         level += "<select id='userRole' name='modules' lay-verify='required' lay-search=''style='width: 235px;height: 33.9px;border: 1px solid #ccc;border-radius: 4px;'>";
-                        for (var i = 0; i < data.data.allRoleName.length; i++){
-                            level += "<option value='"+data.data.allRoleName[i]+"'>"+data.data.allRoleName[i]+"</option>";
+                        for (var i = 0; i < data.respData.allRoleName.length; i++){
+                            level += "<option value='"+data.respData.allRoleName[i]+"'>"+data.respData.allRoleName[i]+"</option>";
                         }
                         level += "</select></div>";
                         $("#userRole").append(level);
@@ -90,12 +90,12 @@ function addUser(){
                 parent.layer.alert("Connection error");
             },
             success : function(data) {
-                if (data.code === 200) {
-                    if (data.data.code === 200){
+                if (data.respCode == 200) {
+                    if (data.respData.code == 200){
                         parent.layer.msg("操作成功");
-                    } else if(data.data.code === 501){
+                    } else if(data.respData.code == 501){
                         parent.layer.msg("该用户已存在，操作失败");
-                    } else if(data.data.code === 500){
+                    } else if(data.respData.code == 500){
                         parent.layer.msg("操作失败");
                     }
                     var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引

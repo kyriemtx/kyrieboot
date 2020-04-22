@@ -21,7 +21,7 @@ public class SysPost implements Serializable {
     private static final long serialVersionUID = 5205554920163069741L;
 
 
-    private int postId;
+    private String postId;
     private String postCode;
     private String postName;
     private int postSort;
@@ -39,7 +39,7 @@ public class SysPost implements Serializable {
 
     }
 
-    public SysPost(int postId, String postCode, String postName, int postSort, String postStatus, String creatBy,
+    public SysPost(String postId, String postCode, String postName, int postSort, String postStatus, String creatBy,
                    String updateBy, Date createTime, Date updateTime, String remark) {
         this.postId = postId;
         this.postCode = postCode;

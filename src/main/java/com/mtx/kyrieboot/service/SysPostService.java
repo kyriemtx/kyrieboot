@@ -32,7 +32,7 @@ public interface SysPostService {
      * @param postId
      * @return
      */
-    SysPost selectById(int postId);
+    SysPost selectById(String postId);
 
 
     /**
@@ -55,6 +55,6 @@ public interface SysPostService {
      * @param postId
      * @return
      */
-    int deleteSysPost(Integer postId);
+    int deleteSysPost(String postId);
 
 }
