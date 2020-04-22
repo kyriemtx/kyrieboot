@@ -5,7 +5,6 @@ $.validator.setDefaults({
 });
 
 var postId=$("#postId").val();
-debugger
 var app = new Vue({
     el:"#app",
     data:{
@@ -17,7 +16,7 @@ var app = new Vue({
         expandAll:true,
     },
     methods:{
-       /* getData: function() {
+        getData: function() {
             $.ajax({
                 cache : true,
                 type : "GET",
@@ -29,12 +28,13 @@ var app = new Vue({
                     parent.layer.alert("Connection error");
                 },
                 success : function(data) {
+                    debugger;
                     if (data.respCode == 200) {
                         app.data = data.respData.data;
                     }
                 }
             });
-        },*/
+        },
         validateRule:function () {
             var icon = "<i class='fa fa-times-circle'></i> ";
             $("#signupForm").validate({
@@ -66,7 +66,7 @@ var app = new Vue({
         }
     },
     mounted:function () {
-       /* this.getData();*/
+        this.getData();
         this.validateRule();
     }
 });
