@@ -2,12 +2,22 @@ package com.mtx.kyrieboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class KyriebootApplication {
+public class KyriebootApplication extends SpringBootServletInitializer {
+
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(KyriebootApplication.class);
+    }
+
 
     public static void main(String[] args) {
         SpringApplication.run(KyriebootApplication.class, args);
     }
+
 
 }

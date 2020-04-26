@@ -31,7 +31,7 @@ public class SysMenuRoleServiceImpl implements SysMenuRoleService {
 
     @Override
     public int deleteByRoleId(String roleId) {
-        return sysMenuRoleMapper.deleteById(roleId);
+        return sysMenuRoleMapper.deleteByRoleId(roleId);
     }
 
     @Override
