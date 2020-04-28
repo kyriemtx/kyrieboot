@@ -30,6 +30,16 @@
                 </li>
             </ul>
             <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
+                <li class="layui-nav-item layui-hide-xs" lay-unselect>
+                    <a href="http://www.kyriemtx.com" target="_blank">
+                        <i>德鲁大叔博客</i>
+                    </a>
+                </li>
+                <li class="layui-nav-item layui-hide-xs" lay-unselect>
+                    <a href="javascript:;" layadmin-event="fullscreen">
+                        <i class="layui-icon layui-icon-screen-full">&nbsp;全屏显示</i>
+                    </a>
+                </li>
                 <li class="layui-nav-item" lay-unselect>
                     <a href="javascript:;">
                         <cite>{{loginName}}</cite>
@@ -40,11 +50,6 @@
                         <hr>
                         <dd style="text-align: center;" @click="logout()"><a @click="logout()">退出</a></dd>
                     </dl>
-                </li>
-                <li class="layui-nav-item layui-hide-xs" lay-unselect>
-                    <a href="javascript:;" layadmin-event="fullscreen">
-                        <i class="layui-icon layui-icon-screen-full"></i>
-                    </a>
                 </li>
             </ul>
         </div>

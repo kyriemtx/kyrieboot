@@ -49,7 +49,6 @@ var app = new Vue({
                         parent.layer.alert("Connection error");
                     },
                     success: function (data) {
-                        debugger
                         if (data.respCode == 200) {
                             $("#menuNames").show();
                             $("#menuNames").html("");

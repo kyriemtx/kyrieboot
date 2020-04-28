@@ -2,17 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.mtx</groupId>
+    <artifactId>kyrieboot</artifactId>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
+    <description>德鲁大叔权限管理系统</description>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.2.5.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.mtx</groupId>
-    <artifactId>kyrieboot</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>kyrieboot</name>
-    <description>德鲁大叔权限管理系统</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -25,7 +27,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <!--<scope>provided</scope>-->
+            <scope>provided</scope>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
