@@ -9,6 +9,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 /**
  * @ClassName SysProvinceMapper
  * @Description
@@ -45,4 +47,6 @@ public interface SysProvinceMapper  extends BaseMapper<SysProvince> {
     int deleteByPostId(@Param("Id") int Id);
 
 
+    @Select("select * from sys_province")
+    List<SysProvince> citySelect();
 }

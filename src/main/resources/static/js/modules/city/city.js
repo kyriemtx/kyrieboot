@@ -37,7 +37,7 @@ var vm = new Vue({
         handleDelete:function(row,tableData) {
             layer.confirm("您确定要删除吗？", function (index) {
                 $.ajax({
-                    url: context + 'city/deleteCity?Id=' + row.id,
+                    url: context + 'city/deleteCity?cityCode=' + row.cityCode,
                     type: 'GET',
                     success: function (res) {
                         if (res.respCode == 200){

@@ -49,4 +49,19 @@ public class SysCityServiceImpl implements SysCityService {
     public SysCity selectById(int id) {
         return  sysCityMapper.selectById(id);
     }
+
+    @Override
+    public int inserSysCity(SysCity sysCity) {
+        return sysCityMapper.insert(sysCity);
+    }
+
+    @Override
+    public int updataSysCity(SysCity sysCity) {
+        return sysCityMapper.updateById(sysCity);
+    }
+
+    @Override
+    public int deleteByCode(String cityCode) {
+        return sysCityMapper.deleteByCode(cityCode);
+    }
 }

@@ -32,8 +32,8 @@ public class SysCityController {
 
 
     @GetMapping("/update")
-    public String update(int id, Model model){
-        SysCity sysCity = sysCityService.selectById(id);
+    public String update(String cityCode, Model model){
+        SysCity sysCity = sysCityService.selectByCode(cityCode);
         model.addAttribute("sysCity",sysCity);
         return "module/city/updateCity";
     }

@@ -17,7 +17,7 @@ public class SysCity implements Serializable{
 
     private static final long serialVersionUID = -9078512120479522637L;
 
-    private int Id;
+    private int id;
 
     private String cityCode;
 

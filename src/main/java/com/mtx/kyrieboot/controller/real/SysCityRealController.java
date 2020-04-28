@@ -9,10 +9,8 @@ import com.mtx.kyrieboot.service.SysCityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -56,5 +54,63 @@ public class SysCityRealController {
     }
 
 
+    @PostMapping("/addCity")
+    @ResponseBody
+    @Transactional(rollbackFor = {RuntimeException.class,Exception.class})
+    public AjaxResult addCity(@RequestBody SysCity sysCity){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            SysCity city = sysCityService.selectByCode(sysCity.getCityCode());
+            if(city == null){
+                sysCityService.inserSysCity(sysCity);
+                jsonObject.put("code",200);
+            }else {
+                jsonObject.put("code",501);
+            }
+        }catch (Exception e){
+            jsonObject.put("code",500);
+        }
+        return AjaxResult.success(jsonObject);
+    }
+
+
+    @PostMapping("/updateCity")
+    @ResponseBody
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public AjaxResult updateCity(@RequestBody SysCity sysCity) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            SysCity city = sysCityService.selectByCode(sysCity.getCityCode());
+            if(city != null){
+                sysCityService.updataSysCity(sysCity);
+                jsonObject.put("code",200);
+            }else {
+                jsonObject.put("code",501);
+            }
+        }catch (Exception e){
+            jsonObject.put("code",500);
+        }
+        return AjaxResult.success(jsonObject);
+    }
+
+
+    @GetMapping("/deleteCity")
+    @ResponseBody
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public AjaxResult deleteCity(String cityCode){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            SysCity sysCity = sysCityService.selectByCode(cityCode);
+            if(sysCity != null){
+                sysCityService.deleteByCode(cityCode);
+                jsonObject.put("code",200);
+            }else {
+                jsonObject.put("code",501);
+            }
+        }catch (Exception e){
+            jsonObject.put("code",500);
+        }
+        return AjaxResult.success(jsonObject);
+    }
 
 }

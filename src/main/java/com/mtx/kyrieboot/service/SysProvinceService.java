@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.entity.SysProvince;
 
+import java.util.List;
+
 /**
  * @ClassName SysProvinceService
  * @Description
@@ -63,6 +65,12 @@ public interface SysProvinceService {
      * @return
      */
     int deleteSysProvince(int Id);
+
+    /**
+     * 城市管理中选择上级省份
+     * @return
+     */
+    List<SysProvince> citySelect();
 
 
 }

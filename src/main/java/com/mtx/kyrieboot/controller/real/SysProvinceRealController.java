@@ -130,4 +130,20 @@ public class SysProvinceRealController {
         return AjaxResult.success(jsonObject);
     }
 
+
+    @GetMapping("/citySelect")
+    @ResponseBody
+    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    public AjaxResult selectProvincesCodes(){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            List<SysProvince> sysProvinces = sysProvinceService.citySelect();
+            jsonObject.put("code",200);
+            jsonObject.put("data",sysProvinces);
+        }catch (Exception e){
+            jsonObject.put("code",500);
+        }
+        return AjaxResult.success(jsonObject);
+    }
+
 }

@@ -43,4 +43,27 @@ public interface SysCityService {
     SysCity selectById(int id);
 
 
+    /**
+     * 新增城市
+     * @param sysCity
+     * @return
+     */
+    int inserSysCity(SysCity sysCity);
+
+
+    /**
+     * 更新城市信息
+     * @param sysCity
+     * @return
+     */
+    int updataSysCity(SysCity sysCity);
+
+
+    /**
+     * 根据cityCode删除
+     * @param cityCode
+     * @return
+     */
+    int deleteByCode(String cityCode);
+
 }

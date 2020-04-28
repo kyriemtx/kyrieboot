@@ -1,6 +1,5 @@
 package com.mtx.kyrieboot.controller;
 
-import com.mtx.kyrieboot.entity.SysMenu;
 import com.mtx.kyrieboot.entity.SysProvince;
 import com.mtx.kyrieboot.service.SysProvinceService;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +40,13 @@ public class ProvinceController {
     @GetMapping("/add")
     public String add(){
         return "module/province/addProvince";
+    }
+
+
+
+    @GetMapping("/liandong")
+    public String liandong(){
+        return "module/areamanager/index";
     }
 
 }

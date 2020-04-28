@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.entity.SysCity;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -45,6 +46,12 @@ public interface SysCityMapper extends BaseMapper<SysCity> {
     IPage<SysCity> getAll(Page page);
 
 
+    @Select("select * from sys_city where id=#{id}")
+    SysCity selectById(@Param("id")int id);
+
+
+    @Delete("delete from sys_city where city_code =#{cityCode}")
+    int deleteByCode(@Param("cityCode")String cityCode);
 
 
 }

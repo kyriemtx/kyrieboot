@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @ClassName SysProvinceServiceImpl
  * @Description
@@ -74,5 +76,10 @@ public class SysProvinceServiceImpl implements SysProvinceService {
         int res = sysProvinceMapper.deleteById(Id);
         log.info("[删除省份信息接口]，返回参数：{}", res);
         return res;
+    }
+
+    @Override
+    public List<SysProvince> citySelect() {
+        return sysProvinceMapper.citySelect();
     }
 }
