@@ -12,21 +12,22 @@
 <body>
 
     <ul class="container">
+
         <li class="row">
             <p class="label">省 份</p>
-            <select name="province" id="province">
+            <select name="provinceCode" id="provinceCode" onclick="getProvinces()">
                 <option value="">省 份</option>
             </select>
         </li>
+
         <li class="row">
-            <p class="label">地级市</p>
-            <select name="city" id="city">
-                <option value="">地级市</option>
+            <p class="label">地 市</p>
+            <select name="cityCode" id="cityCode" onclick="selectCityByProvinceCode()">
             </select>
         </li>
         <li class="row">
             <p class="label">县/区</p>
-            <select name="area" id="area">
+            <select name="areaCode" id="areaCode">
                 <option value="">县/区</option>
             </select>
         </li>
@@ -37,5 +38,53 @@
             </select>
         </li>
     </ul>
+
+
+<script th:src="@{/static/js/jquery.1.12.4.min.js}"></script>
+<script>
+    function getProvinces() {
+        var provinceCodesUrl = "http://localhost:9999/kyrie/province/citySelect";
+        $.ajax({
+            url: provinceCodesUrl,
+            dataType: 'json',
+            success : function(data) {
+                /*$("#provinceCode").empty();*/
+                for(var i = 0;i<data.respData.data.length; i++){
+                    var value = data.respData.data[i].provinceCode;
+                    var lable = data.respData.data[i].provinceName;
+                    $('#provinceCode').append("<option value="+value+">"+lable+"</option>");
+                }
+            },
+            error : function(data) {
+                console.log("下拉框数据加载失败")
+            }
+        })
+    }
+
+    function selectCityByProvinceCode() {
+        var cityCodesUrl = "http://localhost:9999/kyrie/city/selectCitiesByProvinceCode";
+        var provinceCode = $("#provinceCode option:selected").val();
+        $.ajax({
+            url: cityCodesUrl,
+            dataType: 'json',
+            data:{
+                provinceCode:provinceCode
+            },
+            type: 'get',
+            success : function(data) {
+                 /*$("#cityceCode").empty();*/
+                for(var i = 0;i<data.respData.data.length; i++){
+                    var value = data.respData.data[i].cityCode;
+                    var lable = data.respData.data[i].cityName;
+                    $('#cityCode').append("<option value="+value+">"+lable+"</option>");
+                }
+            },
+            error : function(data) {
+                console.log("下拉框数据加载失败")
+            }
+        })
+    }
+</script>
+
 </body>
 </html>

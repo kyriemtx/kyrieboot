@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @ClassName SysCityServiceImpl
  * @Description
@@ -63,5 +65,19 @@ public class SysCityServiceImpl implements SysCityService {
     @Override
     public int deleteByCode(String cityCode) {
         return sysCityMapper.deleteByCode(cityCode);
+    }
+
+    @Override
+    public String selectNameByCode(String cityCode) {
+        return sysCityMapper.selectNameByCode(cityCode);
+    }
+
+
+    @Override
+    public List<SysCity> selectCitesByProvinceCode(String provinceCode) {
+        log.info("[根据省份代码查询下属城市接口],请求参数：provinceCode :{}",provinceCode);
+        List<SysCity> sysCities = sysCityMapper.selectCitesByProvinceCode(provinceCode);
+        log.info("[根据省份代码查询下属城市接口],返回参数 :{}",JSON.toJSONString(sysCities));
+        return sysCities;
     }
 }

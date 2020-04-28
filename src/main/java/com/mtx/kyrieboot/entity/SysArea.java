@@ -1,33 +1,32 @@
 package com.mtx.kyrieboot.entity;
-import	java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+
 import	java.io.Serializable;
+import java.util.Date;
 
 /**
- * @ClassName SysCity
+ * @ClassName SysArea
  * @Description
  * @Author tengxiao.ma
- * @Date 2020/4/28 12:50
+ * @Date 2020/4/28 16:36
  **/
-
 @Data
-public class SysCity implements Serializable{
+public class SysArea implements Serializable {
 
-    private static final long serialVersionUID = -9078512120479522637L;
+    private static final long serialVersionUID = 2689501496576027135L;
 
     private int id;
 
-    private String cityCode;
+    private String areaCode;
 
     private String cityName;
 
+    private String areaName;
+
     private String shortName;
 
-    private String provinceCode;
-
-    private String provinceName;
+    private String cityCode;
 
     private String lng;
 

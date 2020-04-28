@@ -16,7 +16,7 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
             <div class="layui-card">
-                <span style="margin-left: 92%" @click="addCity()" class="btn btn-primary">新增</span>
+                <span style="margin-left: 92%" @click="addArea()" class="btn btn-primary">新增</span>
                 <div class="layui-card-body">
                     <el-table
                             :data="tableData"
@@ -31,17 +31,17 @@
                                 align="center">
                         </el-table-column>
                         <el-table-column
-                                prop="provinceName"
-                                label="所属省"
+                                prop="cityName"
+                                label="所属市"
                                 align="center">
                         </el-table-column>
                         <el-table-column
-                                prop="provinceCode"
+                                prop="areaCode"
                                 label="城市代码"
                                 align="center">
                         </el-table-column>
                         <el-table-column
-                                prop="cityName"
+                                prop="areaName"
                                 label="城市名称"
                                 align="center">
                         </el-table-column>
@@ -114,6 +114,6 @@
 <script th:src="@{/static/js/layui/lay/modules/layer.js}"></script>
 <script th:src="@{/static/js/vue.2.6.11.js}"></script>
 <script th:src="@{/static/js/element-ui.2.13.0.js}"></script>
-<script th:src="@{/static/js/modules/city/city.js}"></script>
+<script th:src="@{/static/js/modules/area/area.js}"></script>
 </body>
 </html>

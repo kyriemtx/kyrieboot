@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.entity.SysCity;
 
+import java.util.List;
+
 /**
  * @ClassName SysCityService
  * @Description
@@ -65,5 +67,20 @@ public interface SysCityService {
      * @return
      */
     int deleteByCode(String cityCode);
+
+
+    /**
+     * 根据城市代码查询城市名(供区县管理页面展区县所属的上级城市)
+     * @param cityCode
+     * @return
+     */
+    String selectNameByCode(String cityCode);
+
+    /**
+     * 根据省份代码查询下属城市
+     * @param provinceCode
+     * @return
+     */
+    List<SysCity> selectCitesByProvinceCode(String provinceCode);
 
 }

@@ -8,7 +8,10 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @ClassName SysCityMapper
@@ -53,5 +56,11 @@ public interface SysCityMapper extends BaseMapper<SysCity> {
     @Delete("delete from sys_city where city_code =#{cityCode}")
     int deleteByCode(@Param("cityCode")String cityCode);
 
+    @Select("select city_name from sys_city where city_code =#{cityCode}")
+    String selectNameByCode(@Param("cityCode")String cityCode);
+
+
+    @Select("select * from sys_city where province_code = #{provinceCode}")
+    List<SysCity> selectCitesByProvinceCode(@Param("provinceCode")String provinceCode);
 
 }

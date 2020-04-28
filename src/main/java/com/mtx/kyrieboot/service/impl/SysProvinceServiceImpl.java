@@ -82,4 +82,9 @@ public class SysProvinceServiceImpl implements SysProvinceService {
     public List<SysProvince> citySelect() {
         return sysProvinceMapper.citySelect();
     }
+
+    @Override
+    public String selectProvinceNameByCode(String provinceCode) {
+        return sysProvinceMapper.selectProvinceNameByCode(provinceCode);
+    }
 }

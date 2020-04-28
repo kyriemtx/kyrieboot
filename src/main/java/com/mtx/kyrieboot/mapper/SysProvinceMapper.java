@@ -49,4 +49,8 @@ public interface SysProvinceMapper  extends BaseMapper<SysProvince> {
 
     @Select("select * from sys_province")
     List<SysProvince> citySelect();
+
+    @Select("select province_name from sys_province where province_code =#{provinceCode}")
+    String selectProvinceNameByCode(@Param("provinceCode") String provinceCode);
+
 }

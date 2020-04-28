@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.base.AjaxResult;
 import com.mtx.kyrieboot.entity.SysCity;
+import com.mtx.kyrieboot.entity.SysProvince;
 import com.mtx.kyrieboot.service.SysCityService;
+import com.mtx.kyrieboot.service.SysProvinceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,8 @@ public class SysCityRealController {
 
     @Autowired
     private SysCityService sysCityService;
+    @Autowired
+    private SysProvinceService sysProvinceService;
 
     @GetMapping("/getCityInfo")
     public AjaxResult getCityInfo(@RequestParam("page") int page,
@@ -40,6 +44,8 @@ public class SysCityRealController {
         List<SysCity> sysCities = sysCityIPage.getRecords();
         if(sysCities.size()>0){
             for(SysCity sysCity : sysCities){
+                String provinceName = sysProvinceService.selectProvinceNameByCode(sysCity.getProvinceCode());
+                sysCity.setProvinceName(provinceName);
                 if(sysCity.getDataState().equals("0")){
                     sysCity.setDataState("正常");
                 }
@@ -107,6 +113,23 @@ public class SysCityRealController {
             }else {
                 jsonObject.put("code",501);
             }
+        }catch (Exception e){
+            jsonObject.put("code",500);
+        }
+        return AjaxResult.success(jsonObject);
+    }
+
+
+
+    @GetMapping("/selectCitiesByProvinceCode")
+    @ResponseBody
+    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    public AjaxResult selectCitesByProvinceCode(String provinceCode){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            List<SysCity> sysCities = sysCityService.selectCitesByProvinceCode(provinceCode);
+            jsonObject.put("code",200);
+            jsonObject.put("data",sysCities);
         }catch (Exception e){
             jsonObject.put("code",500);
         }

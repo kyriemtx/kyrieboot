@@ -73,4 +73,12 @@ public interface SysProvinceService {
     List<SysProvince> citySelect();
 
 
+    /**
+     * 根据省份编码查询省份名称 供市级管理页面展示所属的省份
+     * @param provinceCode
+     * @return
+     */
+    String selectProvinceNameByCode(String provinceCode);
+
+
 }
