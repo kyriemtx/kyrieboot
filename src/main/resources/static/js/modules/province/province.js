@@ -14,9 +14,9 @@ var vm = new Vue({
                 maxmin: true,
                 shadeClose: false, // 点击遮罩关闭层
                 area: ['800px', '520px'],
-                content: context + 'post/add',
+                content: context + 'province/add',
                 end: function () {
-                    vm.getPostList();
+                    vm.getProvince();
                 }
             });
         },
@@ -28,22 +28,22 @@ var vm = new Vue({
                 maxmin: true,
                 shadeClose: false, // 点击遮罩关闭层
                 area: ['800px', '520px'],
-                content: context + 'post/update?postId='+row.postId,
+                content: context + 'province/update?provinceCode='+row.provinceCode,
                 end: function () {
-                    vm.getPostList();
+                    vm.getProvince();
                 }
             });
         },
         handleDelete:function(row,tableData) {
             layer.confirm("您确定要删除吗？", function (index) {
                 $.ajax({
-                    url: context + 'post/deletePost?postId=' + row.postId,
+                    url: context + 'province/deleteProvince?Id=' + row.id,
                     type: 'GET',
                     success: function (res) {
                         if (res.respCode == 200){
                             if (res.respData.code == 200){
                                 layer.msg("操作成功");
-                                vm.getPostList();
+                                vm.getProvince();
                             } else {
                                 layer.msg("操作失败");
                             }
@@ -54,19 +54,19 @@ var vm = new Vue({
         },
         handleSizeChange: function (val) {
             vm.page_size = val;
-            this.getPostList();
+            this.getProvince();
         },
         handleCurrentChange: function (val) {
             vm.current_page = val;
-            this.getPostList();
+            this.getProvince();
         },
 
-        getPostList: function () {
+        getProvince: function () {
             $.ajax({
-                url: context + 'post/getPostInfo?page=' + this.current_page + '&page_size=' + this.page_size,
+                url: context + 'province/getProvinceInfo?page=' + this.current_page + '&page_size=' + this.page_size,
                 type: 'GET',
                 success: function (res) {
-                    vm.tableData = res.respData.sysPostList;
+                    vm.tableData = res.respData.sysProvinceList;
                     vm.total = res.respData.total;
                     vm.page_size = res.respData.page_size;
                     vm.current_page = res.respData.page;
@@ -75,6 +75,6 @@ var vm = new Vue({
         }
     },
     mounted: function () {
-        this.getPostList();
+        this.getProvince();
     }
 });

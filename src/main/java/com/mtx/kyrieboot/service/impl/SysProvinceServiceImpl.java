@@ -1,0 +1,78 @@
+package com.mtx.kyrieboot.service.impl;
+
+import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.mtx.kyrieboot.entity.SysProvince;
+import com.mtx.kyrieboot.mapper.SysProvinceMapper;
+import com.mtx.kyrieboot.service.SysProvinceService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * @ClassName SysProvinceServiceImpl
+ * @Description
+ * @Author tengxiao.ma
+ * @Date 2020/4/28 11:53
+ **/
+@Slf4j
+@Service
+public class SysProvinceServiceImpl implements SysProvinceService {
+
+    @Autowired
+    private SysProvinceMapper sysProvinceMapper;
+
+    @Override
+    public SysProvince findByName(String provinceName) {
+        log.info("[根据省份名称查询省份接口]，请求参数：provinceName {}",provinceName);
+        SysProvince sysProvince = sysProvinceMapper.selectByName(provinceName);
+        log.info("[根据省份名称查询省份接口]，返回参数：{}", JSON.toJSONString(sysProvince));
+        return sysProvince;
+    }
+
+    @Override
+    public SysProvince findByCode(String provinceCode) {
+        log.info("[根据省份代码查询省份接口]，请求参数：provinceCode {}",provinceCode);
+        SysProvince sysProvince = sysProvinceMapper.selectByCode(provinceCode);
+        log.info("[根据省份代码查询省份接口]，返回参数：{}", JSON.toJSONString(sysProvince));
+        return sysProvince;
+    }
+
+    @Override
+    public IPage<SysProvince> getAll(Page page) {
+        return sysProvinceMapper.getAll(page);
+    }
+
+    @Override
+    public SysProvince selectById(int Id) {
+        log.info("[根据ID查询省份接口]，请求参数：id {}",Id);
+        SysProvince sysProvince = sysProvinceMapper.selectById(Id);
+        log.info("[根据ID查询省份接口]，返回参数：{}", JSON.toJSONString(sysProvince));
+        return sysProvince;
+    }
+
+    @Override
+    public int insertSysProvince(SysProvince sysProvince) {
+        log.info("[新增省份信息接口]，请求参数： {}",JSON.toJSONString(sysProvince));
+        int res = sysProvinceMapper.insert(sysProvince);
+        log.info("新增省份信息接口]，返回参数：{}", res);
+        return res;
+    }
+
+    @Override
+    public int updateSysProvince(SysProvince sysProvince) {
+        log.info("[修改省份信息接口]，请求参数： {}",JSON.toJSONString(sysProvince));
+        int res = sysProvinceMapper.updateById(sysProvince);
+        log.info("[修改省份信息接口]，返回参数：{}", res);
+        return res;
+    }
+
+    @Override
+    public int deleteSysProvince(int Id) {
+        log.info("[删除省份信息接口]，请求参数： {}",Id);
+        int res = sysProvinceMapper.deleteById(Id);
+        log.info("[删除省份信息接口]，返回参数：{}", res);
+        return res;
+    }
+}

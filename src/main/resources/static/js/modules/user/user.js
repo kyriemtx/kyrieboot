@@ -4,7 +4,7 @@ $().ready(function(){
         data: {
             tableData: [],
             total: 50,
-            page_size: 5,
+            page_size: 10,
             current_page: 1
         },
         methods: {
