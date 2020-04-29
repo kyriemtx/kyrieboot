@@ -7,43 +7,42 @@ var vm = new Vue({
         current_page: 1
     },
     methods: {
-        addRole:function() {
+        addStreet:function() {
             layer.open({
                 type: 2,
                 title: '新增',
                 maxmin: true,
-                shadeClose: false, // 点击遮罩关闭层
+                shadeClose: false,
                 area: ['800px', '520px'],
-                content: context + 'province/add',
+                content: context + 'street/add',
                 end: function () {
-                    vm.getProvince();
+                    vm.getStreet();
                 }
             });
         },
         handleEdit: function(row) {
-            console.log(row);
             layer.open({
                 type: 2,
                 title: '编辑',
                 maxmin: true,
-                shadeClose: false, // 点击遮罩关闭层
+                shadeClose: false,
                 area: ['800px', '520px'],
-                content: context + 'province/update?provinceCode='+row.provinceCode,
+                content: context + 'street/update?streetCode='+row.streetCode,
                 end: function () {
-                    vm.getProvince();
+                    vm.getStreet();
                 }
             });
         },
         handleDelete:function(row,tableData) {
             layer.confirm("您确定要删除吗？", function (index) {
                 $.ajax({
-                    url: context + 'province/deleteProvince?provinceCode=' + row.provinceCode,
+                    url: context + 'street/deleteStreet?streetCode=' + row.streetCode,
                     type: 'GET',
                     success: function (res) {
                         if (res.respCode == 200){
                             if (res.respData.code == 200){
                                 layer.msg("操作成功");
-                                vm.getProvince();
+                                vm.getStreet();
                             } else {
                                 layer.msg("操作失败");
                             }
@@ -54,19 +53,19 @@ var vm = new Vue({
         },
         handleSizeChange: function (val) {
             vm.page_size = val;
-            this.getProvince();
+            this.getStreet();
         },
         handleCurrentChange: function (val) {
             vm.current_page = val;
-            this.getProvince();
+            this.getStreet();
         },
 
-        getProvince: function () {
+        getStreet: function () {
             $.ajax({
-                url: context + 'province/getProvinceInfo?page=' + this.current_page + '&page_size=' + this.page_size,
+                url: context + 'street/getStreetInfo?page=' + this.current_page + '&page_size=' + this.page_size,
                 type: 'GET',
                 success: function (res) {
-                    vm.tableData = res.respData.sysProvinceList;
+                    vm.tableData = res.respData.sysStreetList;
                     vm.total = res.respData.total;
                     vm.page_size = res.respData.page_size;
                     vm.current_page = res.respData.page;
@@ -75,6 +74,6 @@ var vm = new Vue({
         }
     },
     mounted: function () {
-        this.getProvince();
+        this.getStreet();
     }
 });

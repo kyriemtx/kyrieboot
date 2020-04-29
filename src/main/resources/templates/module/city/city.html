@@ -32,7 +32,7 @@
                         </el-table-column>
                         <el-table-column
                                 prop="provinceName"
-                                label="所属省"
+                                label="上级全称"
                                 align="center">
                         </el-table-column>
                         <el-table-column
@@ -94,7 +94,7 @@
                             @size-change="handleSizeChange"
                             @current-change="handleCurrentChange"
                             layout="prev,pager,next,sizes"
-                            :page-sizes="[5, 10, 15, 20]"
+                            :page-sizes="[10, 20, 50, 100]"
                             :page-size="page_size"
                             :current-page="current_page"
                             :total="total">

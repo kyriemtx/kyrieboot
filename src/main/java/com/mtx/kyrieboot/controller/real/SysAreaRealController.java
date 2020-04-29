@@ -6,8 +6,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.base.AjaxResult;
 import com.mtx.kyrieboot.entity.SysArea;
+import com.mtx.kyrieboot.entity.SysCity;
 import com.mtx.kyrieboot.service.SysAreaService;
 import com.mtx.kyrieboot.service.SysCityService;
+import com.mtx.kyrieboot.service.SysProvinceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,8 @@ public class SysAreaRealController {
     private SysAreaService sysAreaService;
     @Autowired
     private SysCityService sysCityService;
+    @Autowired
+    private SysProvinceService sysProvinceService;
 
 
     @GetMapping("/getAreaInfo")
@@ -44,8 +48,10 @@ public class SysAreaRealController {
         List<SysArea> sysAreas = sysAreaIPage.getRecords();
         if(sysAreas.size()>0){
             for(SysArea sysArea : sysAreas){
-                 String cityName = sysCityService.selectNameByCode(sysArea.getCityCode());
-                 sysArea.setCityName(cityName);
+                 SysCity sysCity = sysCityService.selectByCode(sysArea.getCityCode());
+                 String provinceName = sysProvinceService.selectProvinceNameByCode(sysCity.getProvinceCode());
+                 String prdName = provinceName+sysCity.getCityName();
+                 sysArea.setCityName(prdName);
                 if(sysArea.getDataState().equals("0")){
                     sysArea.setDataState("正常");
                 }

@@ -6,7 +6,6 @@
     <groupId>com.mtx</groupId>
     <artifactId>kyrieboot</artifactId>
     <version>1.0.0</version>
-    <packaging>war</packaging>
     <description>德鲁大叔权限管理系统</description>
 
     <parent>
@@ -183,6 +182,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <finalName>kyrieboot</finalName>
     </build>
 
 </project>

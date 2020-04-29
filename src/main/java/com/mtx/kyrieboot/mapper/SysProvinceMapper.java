@@ -4,10 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.entity.SysProvince;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -52,5 +49,14 @@ public interface SysProvinceMapper  extends BaseMapper<SysProvince> {
 
     @Select("select province_name from sys_province where province_code =#{provinceCode}")
     String selectProvinceNameByCode(@Param("provinceCode") String provinceCode);
+
+
+    @Delete("delete from sys_province where province_code =#{provinceCode}")
+    int deleteByProvinceCode(@Param("provinceCode")String provinceCode);
+
+
+    @Update("update sys_province set province_code = #{provinceCode},province_name = #{provinceName}," +
+            "short_name =#{shortName}, lng =#{lng},lat =#{lat},sort =#{sort}, memo =#{memo},data_state =#{dataState} where id =#{id} ")
+    int updateSysProvince(SysProvince sysProvince);
 
 }

@@ -47,9 +47,9 @@ public class SysProvinceServiceImpl implements SysProvinceService {
     }
 
     @Override
-    public SysProvince selectById(int Id) {
-        log.info("[根据ID查询省份接口]，请求参数：id {}",Id);
-        SysProvince sysProvince = sysProvinceMapper.selectById(Id);
+    public SysProvince selectById(int id) {
+        log.info("[根据ID查询省份接口]，请求参数：id {}",id);
+        SysProvince sysProvince = sysProvinceMapper.selectById(id);
         log.info("[根据ID查询省份接口]，返回参数：{}", JSON.toJSONString(sysProvince));
         return sysProvince;
     }
@@ -65,7 +65,7 @@ public class SysProvinceServiceImpl implements SysProvinceService {
     @Override
     public int updateSysProvince(SysProvince sysProvince) {
         log.info("[修改省份信息接口]，请求参数： {}",JSON.toJSONString(sysProvince));
-        int res = sysProvinceMapper.updateById(sysProvince);
+        int res = sysProvinceMapper.updateSysProvince(sysProvince);
         log.info("[修改省份信息接口]，返回参数：{}", res);
         return res;
     }
@@ -86,5 +86,10 @@ public class SysProvinceServiceImpl implements SysProvinceService {
     @Override
     public String selectProvinceNameByCode(String provinceCode) {
         return sysProvinceMapper.selectProvinceNameByCode(provinceCode);
+    }
+
+    @Override
+    public int deleteByProvinceCode(String provinceCode) {
+        return sysProvinceMapper.deleteByProvinceCode(provinceCode);
     }
 }

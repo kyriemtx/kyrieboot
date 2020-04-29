@@ -38,10 +38,10 @@ public interface SysProvinceService {
 
     /**
      * 根据ID查询
-     * @param Id
+     * @param id
      * @return
      */
-    SysProvince selectById(int Id);
+    SysProvince selectById(int id);
 
 
     /**
@@ -79,6 +79,13 @@ public interface SysProvinceService {
      * @return
      */
     String selectProvinceNameByCode(String provinceCode);
+
+    /**
+     * 根据省份代码删除
+     * @param provinceCode
+     * @return
+     */
+    int deleteByProvinceCode(String provinceCode);
 
 
 }

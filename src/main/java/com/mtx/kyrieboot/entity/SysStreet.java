@@ -6,24 +6,27 @@ import	java.io.Serializable;
 import java.util.Date;
 
 /**
- * @ClassName SysProvince
+ * @ClassName SysStreet
  * @Description
  * @Author tengxiao.ma
- * @Date 2020/4/28 11:41
+ * @Date 2020/4/29 13:22
  **/
-
 @Data
-public class SysProvince implements Serializable {
+public class SysStreet implements Serializable{
 
-    private static final long serialVersionUID = 525560239051321634L;
+    private static final long serialVersionUID = -4866032673467922302L;
 
     private int id;
 
-    private String provinceCode;
+    private String streetCode;
 
-    private String provinceName;
+    private String streetName;
 
     private String shortName;
+
+    private String areaCode;
+
+    private String areaName;
 
     private String lng;
 
@@ -40,5 +43,4 @@ public class SysProvince implements Serializable {
     private String memo;
 
     private String dataState;
-
 }

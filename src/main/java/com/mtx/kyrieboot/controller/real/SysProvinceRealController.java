@@ -81,10 +81,14 @@ public class SysProvinceRealController {
     public AjaxResult updateProvince(@RequestBody SysProvince sysProvince){
         JSONObject jsonObject = new JSONObject();
         try {
-            SysProvince province = sysProvinceService.findByCode(sysProvince.getProvinceCode());
+            SysProvince province = sysProvinceService.selectById(sysProvince.getId());
             if(province != null){
                 int res = sysProvinceService.updateSysProvince(sysProvince);
-                jsonObject.put("code",200);
+                if(res==1){
+                    jsonObject.put("code",200);
+                }else {
+                    jsonObject.put("code",500);
+                }
             }else {
                 log.info("数据库未查到当前省份信息");
                 jsonObject.put("code",500);
@@ -110,15 +114,16 @@ public class SysProvinceRealController {
         return AjaxResult.success(jsonObject);
     }
 
+
     @GetMapping("/deleteProvince")
     @ResponseBody
     @Transactional(rollbackFor={RuntimeException.class, Exception.class})
-    public AjaxResult  deleteProvince(int id){
+    public AjaxResult  deleteProvinceByCode(String provinceCode){
         JSONObject jsonObject = new JSONObject();
         try{
-            SysProvince province = sysProvinceService.selectById(id);
+            SysProvince province = sysProvinceService.findByCode(provinceCode);
             if(province != null){
-                int res = sysProvinceService.deleteSysProvince(id);
+                sysProvinceService.deleteByProvinceCode(provinceCode);
                 jsonObject.put("code",200);
             }else {
                 log.info("数据库未查到当前省份信息");
@@ -129,6 +134,7 @@ public class SysProvinceRealController {
         }
         return AjaxResult.success(jsonObject);
     }
+
 
 
     @GetMapping("/citySelect")
