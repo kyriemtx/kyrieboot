@@ -130,4 +130,23 @@ public class SysStreetRealController {
     }
 
 
+    @ResponseBody
+    @GetMapping("/selectByAreaCode")
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public AjaxResult selectByAreaCode(String areaCode){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            if(areaCode != null){
+                List<SysStreet> sysStreets = sysStreetService.selectByAreaCode(areaCode);
+                jsonObject.put("code",200);
+                jsonObject.put("data",sysStreets);
+            }else {
+                jsonObject.put("code",500);
+            }
+        }catch (Exception e){
+            jsonObject.put("code",500);
+        }
+        return AjaxResult.success(jsonObject);
+    }
+
 }

@@ -4,10 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.entity.SysCity;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +37,10 @@ public interface SysCityMapper extends BaseMapper<SysCity> {
     SysCity selectByName(@Param("cityName") String cityName);
 
 
+    @Select("select * from sys_city where id=#{id}")
+    SysCity selectByKeyId(@Param("id") int id);
+
+
     /**
      * 分页查询
      * @param page
@@ -62,5 +63,13 @@ public interface SysCityMapper extends BaseMapper<SysCity> {
 
     @Select("select * from sys_city where province_code = #{provinceCode}")
     List<SysCity> selectCitesByProvinceCode(@Param("provinceCode")String provinceCode);
+
+
+    @Update("update sys_city set province_code = #{provinceCode},city_code = #{cityCode},city_name = #{cityName}," +
+            "short_name =#{shortName}, lng =#{lng},lat =#{lat},sort =#{sort}, memo =#{memo},data_state =#{dataState} where id =#{id} ")
+    int updateCityByCity(SysCity sysCity);
+
+    @Select("select * from sys_city")
+    List<SysCity> areaSelect();
 
 }

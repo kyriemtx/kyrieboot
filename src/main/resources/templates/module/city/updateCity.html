@@ -10,31 +10,33 @@
     <link th:href="@{/static/css/element-ui.2.13.0.css}" rel="stylesheet">
     <link th:href="@{/static/css/font-awesome.min.css}" rel="stylesheet">
 </head>
-<body class="white-bg" onload="getCityCodes()">
+<body class="white-bg" onload="getProvinceCodes()">
 <div class="wrapper wrapper-content animated fadeInRight" id="app">
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <form class="form-horizontal m-t" id="signupForm">
+                        <input id="id" name="if" type="hidden"
+                               th:value="${sysCity.id}">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">区县代码：</label>
+                            <label class="col-sm-3 control-label">城市代码：</label>
                             <div class="col-sm-8">
-                                <input id="areaCode" name="areaCode" class="form-control"
-                                       type="text" placeholder="请输入区县代码">
+                                <input id="cityCode" name="cityCode" class="form-control"
+                                       type="text" th:value="${sysCity.cityCode}">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">区县名称：</label>
+                            <label class="col-sm-3 control-label">城市名称：</label>
                             <div class="col-sm-8">
-                                <input id="areaName" name="areaName" class="form-control"
-                                       type="text" placeholder="请输入区县名称">
+                                <input id="cityName" name="cityName" class="form-control"
+                                       type="text" th:value="${sysCity.cityName}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">上级名称：</label>
                             <div class="col-sm-8">
-                                <select id="cityCode" name="cityCode" class="form-control">
+                                <select id="provinceCode" name="provinceCode" class="form-control">
                                     <option value="">请选择</option>
                                 </select>
                             </div>
@@ -43,14 +45,14 @@
                             <label class="col-sm-3 control-label">简称：</label>
                             <div class="col-sm-8">
                                 <input id="shortName" name="shortName" class="form-control"
-                                       type="text" placeholder="请输入简称">
+                                       type="text" th:value="${sysCity.shortName}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">备注：</label>
                             <div class="col-sm-8">
                                 <input id="memo" name="memo" class="form-control"
-                                       type="text" placeholder="备注">
+                                       type="text" th:value="${sysCity.memo}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -59,12 +61,12 @@
                                 <div class="radio-beauty-container" id="dataState">
                                     <label>
                                         <span class="radio-name">正常</span>
-                                        <input type="radio" value="0" name="postStatus" id="0" hidden/>
+                                        <input type="radio" value="0" name="dataState" id="0" hidden/>
                                         <label for="0" class="radio-beauty"></label>
                                     </label>
                                     <label>
                                         <span class="radio-name">停用</span>
-                                        <input type="radio" value="1" name="postStatus" id="1" hidden/>
+                                        <input type="radio" value="1" name="dataState" id="1" hidden/>
                                         <label for="1" class="radio-beauty"></label>
                                     </label>
                                 </div>
@@ -92,6 +94,6 @@
 <script th:src="@{/static/js/layui/lay/modules/layer.js}"></script>
 <script th:src="@{/static/js/vue.2.6.11.js}"></script>
 <script th:src="@{/static/js/element-ui.2.13.0.js}"></script>
-<script th:src="@{/static/js/modules/area/addArea.js}"></script>
+<script th:src="@{/static/js/modules/city/updateCity.js}"></script>
 </body>
 </html>

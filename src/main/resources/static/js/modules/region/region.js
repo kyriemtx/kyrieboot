@@ -52,9 +52,9 @@ var vm = new Vue({
                 });
             });
         },
-        formatShow: function (row, column) {
+       /* formatShow: function (row, column) {
             return row.isShow == true ? '启用' : '未启用';
-        },
+        },*/
         handleSizeChange: function (val) {
             vm.page_size = val;
             this.getRegionList();

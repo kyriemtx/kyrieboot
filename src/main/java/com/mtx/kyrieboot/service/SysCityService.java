@@ -30,6 +30,13 @@ public interface SysCityService {
     SysCity selectByName(String cityName);
 
     /**
+     * 根据主键ID查询
+     * @param id
+     * @return
+     */
+    SysCity selectByKeyId(int id);
+
+    /**
      * 分页查询
      * @param page
      * @return
@@ -82,5 +89,11 @@ public interface SysCityService {
      * @return
      */
     List<SysCity> selectCitesByProvinceCode(String provinceCode);
+
+    /**
+     * 查询城市列表  供区域新增时下拉选择
+     * @return
+     */
+    List<SysCity> areaSelect();
 
 }

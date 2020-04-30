@@ -34,6 +34,11 @@ public class SysAreaServiceImpl implements SysAreaService {
     }
 
     @Override
+    public SysArea selectByKeyId(int id) {
+        return sysAreaMapper.selectByKeyId(id);
+    }
+
+    @Override
     public SysArea selectByName(String areaName) {
         log.info("[根据县区名称查询接口]，请求参数： areaName :{}",areaName);
         SysArea sysArea = sysAreaMapper.selectByName(areaName);
@@ -70,6 +75,11 @@ public class SysAreaServiceImpl implements SysAreaService {
 
     @Override
     public int updateSysArea(SysArea sysArea) {
-        return sysAreaMapper.updateById(sysArea);
+        return sysAreaMapper.updateArea(sysArea);
+    }
+
+    @Override
+    public List<SysArea> streetSelect() {
+        return sysAreaMapper.streetSelect();
     }
 }

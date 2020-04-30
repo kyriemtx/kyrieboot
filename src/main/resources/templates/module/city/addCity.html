@@ -10,7 +10,7 @@
     <link th:href="@{/static/css/element-ui.2.13.0.css}" rel="stylesheet">
     <link th:href="@{/static/css/font-awesome.min.css}" rel="stylesheet">
 </head>
-<body class="white-bg">
+<body class="white-bg" onload="getProvinceCodes()">
 <div class="wrapper wrapper-content animated fadeInRight" id="app">
     <div class="row">
         <div class="col-sm-12">
@@ -34,8 +34,8 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">上级名称：</label>
                             <div class="col-sm-8">
-                                <select id="provinceCode" name="provinceCode" class="form-control" onclick="getProvinceCodes()">
-                                    <option value="">选择上级名称</option>
+                                <select id="provinceCode" name="provinceCode" class="form-control">
+                                    <option value="">请选择</option>
                                 </select>
                             </div>
                         </div>

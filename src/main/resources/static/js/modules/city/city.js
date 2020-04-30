@@ -28,7 +28,7 @@ var vm = new Vue({
                 maxmin: true,
                 shadeClose: false,
                 area: ['800px', '520px'],
-                content: context + 'city/update?Id='+row.id,
+                content: context + 'city/update?cityCode='+row.cityCode,
                 end: function () {
                     vm.getCity();
                 }

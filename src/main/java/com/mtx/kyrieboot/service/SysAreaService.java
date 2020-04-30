@@ -25,6 +25,14 @@ public interface SysAreaService {
 
 
     /**
+     * 根据主键查询
+     * @param id
+     * @return
+     */
+    SysArea selectByKeyId(int id);
+
+
+    /**
      * 根据区域名称查询
      * @param areaName
      * @return
@@ -69,5 +77,11 @@ public interface SysAreaService {
      * @return
      */
     int updateSysArea(SysArea sysArea);
+
+    /**
+     * 查询区县列表  供街道管理模块下拉框选择
+     * @return
+     */
+    List<SysArea> streetSelect();
 
 }

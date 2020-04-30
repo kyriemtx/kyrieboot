@@ -49,7 +49,7 @@ var app = new Vue({
 });
 
 function getCity(){
-    var sysPost = {
+    var sysCity = {
         'provinceCode':$("#provinceCode").val(),
         "cityName":$("#cityName").val(),
         "cityCode":$("#cityCode").val(),
@@ -61,7 +61,7 @@ function getCity(){
         cache : true,
         type : "POST",
         url : context + 'city/addCity',
-        data :JSON.stringify(sysPost),
+        data :JSON.stringify(sysCity),
         dataType : 'json',
         contentType:'application/json',
         error : function(request) {

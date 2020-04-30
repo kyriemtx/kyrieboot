@@ -42,6 +42,11 @@ public class SysCityServiceImpl implements SysCityService {
     }
 
     @Override
+    public SysCity selectByKeyId(int id) {
+        return sysCityMapper.selectByKeyId(id);
+    }
+
+    @Override
     public IPage<SysCity> getAll(Page page) {
 
        return sysCityMapper.getAll(page);
@@ -59,7 +64,7 @@ public class SysCityServiceImpl implements SysCityService {
 
     @Override
     public int updataSysCity(SysCity sysCity) {
-        return sysCityMapper.updateById(sysCity);
+        return sysCityMapper.updateCityByCity(sysCity);
     }
 
     @Override
@@ -79,5 +84,10 @@ public class SysCityServiceImpl implements SysCityService {
         List<SysCity> sysCities = sysCityMapper.selectCitesByProvinceCode(provinceCode);
         log.info("[根据省份代码查询下属城市接口],返回参数 :{}",JSON.toJSONString(sysCities));
         return sysCities;
+    }
+
+    @Override
+    public List<SysCity> areaSelect() {
+        return sysCityMapper.areaSelect();
     }
 }

@@ -72,7 +72,7 @@ public class SysAreaRealController {
     public AjaxResult addArea(@RequestBody SysArea sysArea){
         JSONObject jsonObject = new JSONObject();
         try {
-            SysArea area = sysAreaService.selectByCode(sysArea.getAreaCode());
+            SysArea area = sysAreaService.selectByKeyId(sysArea.getId());
             if(area == null){
                 sysAreaService.insertSysArea(sysArea);
                 jsonObject.put("code",200);
@@ -92,7 +92,7 @@ public class SysAreaRealController {
     public AjaxResult updateArea(@RequestBody SysArea sysArea){
         JSONObject jsonObject = new JSONObject();
         try {
-            SysArea area = sysAreaService.selectByCode(sysArea.getAreaCode());
+            SysArea area = sysAreaService.selectByKeyId(sysArea.getId());
             if(area != null){
                 sysAreaService.updateSysArea(sysArea);
                 jsonObject.put("code",200);
@@ -144,6 +144,22 @@ public class SysAreaRealController {
         }
         return AjaxResult.success(jsonObject);
     }
+
+    @GetMapping("/streetSelect")
+    @ResponseBody
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public AjaxResult selectCityCodes(){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            List<SysArea> sysAreas = sysAreaService.streetSelect();
+            jsonObject.put("code",200);
+            jsonObject.put("data",sysAreas);
+        }catch (Exception e){
+            jsonObject.put("code",500);
+        }
+        return AjaxResult.success(jsonObject);
+    }
+
 
 
 }

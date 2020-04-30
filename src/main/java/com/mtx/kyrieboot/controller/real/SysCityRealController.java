@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.base.AjaxResult;
 import com.mtx.kyrieboot.entity.SysCity;
-import com.mtx.kyrieboot.entity.SysProvince;
 import com.mtx.kyrieboot.service.SysCityService;
 import com.mtx.kyrieboot.service.SysProvinceService;
 import lombok.RequiredArgsConstructor;
@@ -86,7 +85,7 @@ public class SysCityRealController {
     public AjaxResult updateCity(@RequestBody SysCity sysCity) {
         JSONObject jsonObject = new JSONObject();
         try {
-            SysCity city = sysCityService.selectByCode(sysCity.getCityCode());
+            SysCity city = sysCityService.selectByKeyId(sysCity.getId());
             if(city != null){
                 sysCityService.updataSysCity(sysCity);
                 jsonObject.put("code",200);
@@ -128,6 +127,21 @@ public class SysCityRealController {
         JSONObject jsonObject = new JSONObject();
         try {
             List<SysCity> sysCities = sysCityService.selectCitesByProvinceCode(provinceCode);
+            jsonObject.put("code",200);
+            jsonObject.put("data",sysCities);
+        }catch (Exception e){
+            jsonObject.put("code",500);
+        }
+        return AjaxResult.success(jsonObject);
+    }
+
+    @GetMapping("/areaSelect")
+    @ResponseBody
+    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    public AjaxResult selectCityCodes(){
+        JSONObject jsonObject = new JSONObject();
+        try {
+            List<SysCity> sysCities = sysCityService.areaSelect();
             jsonObject.put("code",200);
             jsonObject.put("data",sysCities);
         }catch (Exception e){
