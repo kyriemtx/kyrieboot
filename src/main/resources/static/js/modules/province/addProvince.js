@@ -63,7 +63,6 @@ function addPost(){
             parent.layer.alert("Connection error");
         },
         success : function(data) {
-            debugger
             if (data.respCode == 200) {
                 if (data.respData.code == 200){
                     parent.layer.msg("操作成功");
