@@ -6,7 +6,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.entity.SysPost;
 import com.mtx.kyrieboot.entity.SysRole;
 import com.mtx.kyrieboot.service.SysPostService;
+import com.mtx.kyrieboot.service.SysRegionService;
 import com.mtx.kyrieboot.service.SysRoleService;
+import com.mtx.kyrieboot.vo.SysRegionListVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +32,8 @@ public class MainTest {
     private SysPostService sysPostService;
     @Autowired
     private SysRoleService sysRoleService;
+    @Autowired
+    private SysRegionService sysRegionService;
 
     @Test
     public void 岗位信息(){
@@ -44,5 +48,15 @@ public class MainTest {
         Page page = new Page();
         IPage<SysRole> sysRoleIPage = sysRoleService.getAll(page);
         long size = sysRoleIPage.getSize();
+    }
+
+
+    @Test
+    public void 查询区域信息() {
+        int id = 100000;
+        SysRegionListVO sysRegionListVO = new SysRegionListVO();
+        sysRegionListVO = sysRegionService.selectRegions(id);
+        System.err.println(JSON.toJSONString(sysRegionListVO));
+        log.info("查询结果：{}",JSON.toJSONString(sysRegionListVO));
     }
 }
