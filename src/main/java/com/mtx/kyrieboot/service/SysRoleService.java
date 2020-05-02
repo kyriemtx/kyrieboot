@@ -72,4 +72,10 @@ public interface SysRoleService {
      */
     String getIdByName(String name);
 
+    /**
+     * 查询全部
+     * @return
+     */
+    List<SysRole> getAll();
+
 }

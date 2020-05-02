@@ -33,6 +33,26 @@ var vm = new Vue({
                 }
             });
         },
+
+        streetSearch:function() {
+            var sysStreet = {
+                'areaName' : $('#areaName').val(),
+                'streetName' : $('#streetName').val(),
+                'dataState':$('#dataState option:selected').val()
+            };
+            $.ajax({
+                cache : true,
+                type : "GET",
+                url : context + 'street/selectForm',
+                data : sysStreet,
+                dataType : 'json',
+                contentType:'application/json',
+                success: function (res) {
+                    vm.tableData = res.respData.sysStreetList;
+                }
+            })
+        },
+
         handleDelete:function(row,tableData) {
             layer.confirm("您确定要删除吗？", function (index) {
                 $.ajax({

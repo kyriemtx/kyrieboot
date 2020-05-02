@@ -96,4 +96,6 @@ public interface SysCityService {
      */
     List<SysCity> areaSelect();
 
+    List<SysCity> selectForm(SysCity sysCity);
+
 }

@@ -7,7 +7,7 @@ var vm = new Vue({
         current_page: 1
     },
     methods: {
-        addRole:function() {
+        addPost:function() {
             layer.open({
                 type: 2,
                 title: '新增',
@@ -33,6 +33,23 @@ var vm = new Vue({
                     vm.getPostList();
                 }
             });
+        },
+        postSearch:function() {
+            var sysPost = {
+                'postName':$("#postName").val(),
+                'postStatus':$('#postStatus option:selected').val()
+            };
+            $.ajax({
+                cache : true,
+                type : "GET",
+                url : context + 'post/selectForm',
+                data : sysPost,
+                dataType : 'json',
+                contentType:'application/json',
+                success: function (res) {
+                    vm.tableData = res.respData.sysPostList;
+                }
+            })
         },
         handleDelete:function(row,tableData) {
             layer.confirm("您确定要删除吗？", function (index) {

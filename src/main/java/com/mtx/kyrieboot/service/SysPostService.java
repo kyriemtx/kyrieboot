@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.entity.SysPost;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @ClassName SysPostService
  * @Description
@@ -26,6 +28,8 @@ public interface SysPostService {
      * @return
      */
     IPage<SysPost> getAll(Page page);
+
+    List<SysPost> getAll();
 
     /**
      * 根据ID查询
@@ -56,5 +60,13 @@ public interface SysPostService {
      * @return
      */
     int deleteSysPost(String postId);
+
+
+    /**
+     * 查询表单
+     * @param sysPost
+     * @return
+     */
+    List<SysPost> selectForm(SysPost sysPost);
 
 }

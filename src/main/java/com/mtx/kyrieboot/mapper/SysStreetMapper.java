@@ -57,4 +57,7 @@ public interface SysStreetMapper extends BaseMapper<SysStreet> {
     @Delete("delete from sys_street where area_code =#{streetCode}")
     int deleteByStreetCode(@Param("streetCode") String streetCode);
 
+
+    List<SysStreet> queryAll(SysStreet sysStreet);
+
 }

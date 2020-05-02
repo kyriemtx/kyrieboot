@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @ClassName SysUserServiceImpl
  * @Description
@@ -55,5 +57,24 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public int updatePasswordById(String password, String id) {
        return sysUserMapper.updatePasswordById(password,id);
+    }
+
+    @Override
+    public List<SysUser> selectForm(SysUser sysUser) {
+        if(sysUser.getNickName() == null || sysUser.getNickName().equals("")){
+            if(sysUser.getSex() == null || sysUser.getSex().equals("")){
+                return sysUserMapper.selectAll();
+            }else {
+                return sysUserMapper.findBySex(sysUser.getSex());
+            }
+        }else if(sysUser.getSex() == null || sysUser.getSex().equals("")){
+            if(sysUser.getNickName() == null || sysUser.getNickName().equals("")){
+                return sysUserMapper.selectAll();
+            }else {
+                return sysUserMapper.findByNickName(sysUser.getNickName());
+            }
+        }else {
+            return sysUserMapper.selectAll();
+        }
     }
 }

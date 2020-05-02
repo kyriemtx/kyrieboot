@@ -9,6 +9,8 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import java.util.List;
+
 /**
  * @ClassName SysUserMapper
  * @Description
@@ -51,5 +53,17 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
     @Update("update sys_user set password = #{password} where id = #{id}")
     int updatePasswordById(@Param("password") String password,
                            @Param("id") String id);
+
+
+    @Select("select * from sys_user")
+    List<SysUser> selectAll();
+
+
+    @Select("select * from sys_user where sex =#{sex}")
+    List<SysUser> findBySex(@Param("sex") String sex);
+
+    @Select("select * from sys_user where nick_name =#{nickName}")
+    List<SysUser> findByNickName(@Param("nickName") String nickName);
+
 
 }

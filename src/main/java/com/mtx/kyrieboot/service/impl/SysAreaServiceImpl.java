@@ -4,8 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.entity.SysArea;
+import com.mtx.kyrieboot.entity.SysCity;
 import com.mtx.kyrieboot.mapper.SysAreaMapper;
 import com.mtx.kyrieboot.service.SysAreaService;
+import com.mtx.kyrieboot.service.SysCityService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,8 @@ public class SysAreaServiceImpl implements SysAreaService {
 
     @Autowired
     private SysAreaMapper sysAreaMapper;
+    @Autowired
+    private SysCityService sysCityService;
 
     @Override
     public SysArea selectByCode(String areaCode) {
@@ -81,5 +85,18 @@ public class SysAreaServiceImpl implements SysAreaService {
     @Override
     public List<SysArea> streetSelect() {
         return sysAreaMapper.streetSelect();
+    }
+
+    @Override
+    public List<SysArea> selectForm(SysArea sysArea) {
+        if(sysArea != null){
+            if(sysArea.getCityName() != null){
+                SysCity sysCity = sysCityService.selectByName(sysArea.getCityName());
+                if(sysCity != null){
+                    sysArea.setCityCode(sysCity.getCityCode());
+                }
+            }
+        }
+        return sysAreaMapper.queryAll(sysArea);
     }
 }

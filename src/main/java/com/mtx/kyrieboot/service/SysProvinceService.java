@@ -2,6 +2,7 @@ package com.mtx.kyrieboot.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.mtx.kyrieboot.entity.SysCity;
 import com.mtx.kyrieboot.entity.SysProvince;
 
 import java.util.List;
@@ -86,6 +87,9 @@ public interface SysProvinceService {
      * @return
      */
     int deleteByProvinceCode(String provinceCode);
+
+
+    List<SysProvince> selectForm(SysProvince sysProvince);
 
 
 }

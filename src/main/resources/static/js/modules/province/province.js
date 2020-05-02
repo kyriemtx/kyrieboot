@@ -7,7 +7,7 @@ var vm = new Vue({
         current_page: 1
     },
     methods: {
-        addRole:function() {
+        addProvince:function() {
             layer.open({
                 type: 2,
                 title: '新增',
@@ -21,7 +21,6 @@ var vm = new Vue({
             });
         },
         handleEdit: function(row) {
-            console.log(row);
             layer.open({
                 type: 2,
                 title: '编辑',
@@ -33,6 +32,24 @@ var vm = new Vue({
                     vm.getProvince();
                 }
             });
+        },
+        provinceSearch:function() {
+            var sysProvince = {
+                'provinceName' : $('#provinceName').val(),
+                'provinceCode' : $('#provinceCode').val(),
+                'dataState':$('#dataState option:selected').val()
+            };
+            $.ajax({
+                cache : true,
+                type : "GET",
+                url : context + 'province/selectForm',
+                data : sysProvince,
+                dataType : 'json',
+                contentType:'application/json',
+                success: function (res) {
+                    vm.tableData = res.respData.sysProvinceList;
+                }
+            })
         },
         handleDelete:function(row,tableData) {
             layer.confirm("您确定要删除吗？", function (index) {

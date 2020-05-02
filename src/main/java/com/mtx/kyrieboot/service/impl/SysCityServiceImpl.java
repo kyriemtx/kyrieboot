@@ -4,8 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.entity.SysCity;
+import com.mtx.kyrieboot.entity.SysProvince;
 import com.mtx.kyrieboot.mapper.SysCityMapper;
 import com.mtx.kyrieboot.service.SysCityService;
+import com.mtx.kyrieboot.service.SysProvinceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,8 @@ public class SysCityServiceImpl implements SysCityService {
 
     @Autowired
     private SysCityMapper sysCityMapper;
+    @Autowired
+    private SysProvinceService sysProvinceService;
 
     @Override
     public SysCity selectByCode(String cityCode) {
@@ -89,5 +93,20 @@ public class SysCityServiceImpl implements SysCityService {
     @Override
     public List<SysCity> areaSelect() {
         return sysCityMapper.areaSelect();
+    }
+
+
+    @Override
+    public List<SysCity> selectForm(SysCity sysCity) {
+        if(sysCity != null){
+            if(!sysCity.getProvinceName().equals("") ){
+                SysProvince sysProvince = sysProvinceService.findByName(sysCity.getProvinceName());
+                if(sysProvince != null){
+                    sysCity.setProvinceCode(sysProvince.getProvinceCode());
+                }
+            }
+        }
+        List<SysCity> sysCities = sysCityMapper.queryAll(sysCity);
+        return sysCities;
     }
 }

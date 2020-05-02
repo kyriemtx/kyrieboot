@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.entity.SysUser;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @ClassName SysUserService
  * @Description
@@ -62,4 +64,11 @@ public interface SysUserService {
      * @return
      */
     int updatePasswordById(String password, String id);
+
+    /**
+     * 页面表单查询
+     * @param sysUser
+     * @return
+     */
+    List<SysUser> selectForm(SysUser sysUser);
 }

@@ -2,12 +2,12 @@ server:
   servlet:
     context-path: /kyrie
 
-  port: 9999
+  port: 8800
 
 
 spring:
   profiles:
-    active: dev
+    active: test
   mvc:
     static-path-pattern: /static/**
   thymeleaf:

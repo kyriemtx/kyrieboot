@@ -59,4 +59,7 @@ public interface SysProvinceMapper  extends BaseMapper<SysProvince> {
             "short_name =#{shortName}, lng =#{lng},lat =#{lat},sort =#{sort}, memo =#{memo},data_state =#{dataState} where id =#{id} ")
     int updateSysProvince(SysProvince sysProvince);
 
+    List<SysProvince> queryAll(SysProvince sysProvince);
+
+
 }

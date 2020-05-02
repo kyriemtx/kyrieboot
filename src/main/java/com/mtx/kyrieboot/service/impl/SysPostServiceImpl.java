@@ -11,6 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @ClassName SysPostServiceImpl
  * @Description
@@ -36,6 +39,11 @@ public class SysPostServiceImpl implements SysPostService {
     @Override
     public IPage<SysPost> getAll(Page page) {
         return sysPostMapper.getAll(page);
+    }
+
+    @Override
+    public List<SysPost> getAll() {
+        return null;
     }
 
     @Override
@@ -68,5 +76,27 @@ public class SysPostServiceImpl implements SysPostService {
         int res = sysPostMapper.deleteByPostId(postId);
         log.info("【删除岗位信息接口】,返回参数：res:{}",res);
         return res;
+    }
+
+    @Override
+    public List<SysPost> selectForm(SysPost sysPost) {
+        List<SysPost> sysPosts = new ArrayList<>();
+        if(sysPost.getPostStatus().equals("")){
+            if(sysPost.getPostName().equals("")){
+                sysPosts = sysPostMapper.getAll();
+            }else {
+                SysPost post = sysPostMapper.findByName(sysPost.getPostName());
+                sysPosts.add(post);
+            }
+        }else if(sysPost.getPostName().equals("")){
+            if(sysPost.getPostStatus().equals("")){
+                sysPosts = sysPostMapper.getAll();
+            }else {
+                sysPosts = sysPostMapper.selectByStatus(sysPost.getPostStatus());
+            }
+        }else {
+            sysPosts = sysPostMapper.selectForm(sysPost);
+        }
+        return sysPosts;
     }
 }

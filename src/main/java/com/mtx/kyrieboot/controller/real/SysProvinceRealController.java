@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,6 +53,18 @@ public class SysProvinceRealController {
         jsonObject.put("sysProvinceList",sysProvinces);
 
         return AjaxResult.success(jsonObject);
+    }
+
+
+    @GetMapping("/selectForm")
+    @ResponseBody
+    @Transactional(rollbackFor = {RuntimeException.class,Exception.class})
+    public AjaxResult selectForm(SysProvince sysProvince){
+        JSONObject jsonObject = new JSONObject();
+        List<SysProvince> sysProvinces = sysProvinceService.selectForm(sysProvince);
+        jsonObject.put("sysProvinceList",sysProvinces);
+        return AjaxResult.success(jsonObject);
+
     }
 
     @PostMapping("/addProvince")

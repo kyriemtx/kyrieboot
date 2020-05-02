@@ -1,9 +1,12 @@
 package com.mtx.kyrieboot.mapper;
+import	java.util.List;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.mtx.kyrieboot.entity.SysUser;
 import com.mtx.kyrieboot.entity.SysUserRole;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * @ClassName SysUserRoleMapper

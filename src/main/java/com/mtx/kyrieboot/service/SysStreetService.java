@@ -61,5 +61,7 @@ public interface SysStreetService {
      */
     int updateSysStreet(SysStreet sysStreet);
 
+    List<SysStreet> selectForm(SysStreet sysStreet);
+
 
 }

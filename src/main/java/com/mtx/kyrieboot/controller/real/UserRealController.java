@@ -69,6 +69,27 @@ public class UserRealController {
         return AjaxResult.success(jsonObject);
     }
 
+    /**
+     * 表单查询
+     * @param sysUser
+     * @return
+     */
+    @GetMapping("/selectForm")
+    @ResponseBody
+    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
+    public AjaxResult selectForm(SysUser sysUser){
+        JSONObject jsonObject = new JSONObject();
+        if(sysUser == null){
+            IPage<SysUser> sysUserList = sysUserService.getAll(new Page(1, 10));
+            jsonObject.put("sysUserList",sysUserList.getRecords());
+        }else {
+            List<SysUser> sysUsers = sysUserService.selectForm(sysUser);
+            jsonObject.put("sysUserList",sysUsers);
+        }
+        return AjaxResult.success(jsonObject);
+    }
+
+
     @GetMapping("/deleteUser")
     @Transactional(rollbackFor={RuntimeException.class, Exception.class})
     public AjaxResult deleteUser(@RequestParam("id")String id){

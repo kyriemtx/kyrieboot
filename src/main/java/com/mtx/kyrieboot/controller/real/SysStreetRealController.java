@@ -11,6 +11,7 @@ import com.mtx.kyrieboot.service.SysAreaService;
 import com.mtx.kyrieboot.service.SysCityService;
 import com.mtx.kyrieboot.service.SysProvinceService;
 import com.mtx.kyrieboot.service.SysStreetService;
+import jdk.nashorn.internal.objects.annotations.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,24 +52,52 @@ public class SysStreetRealController {
         List<SysStreet> sysStreets = sysStreetIPage.getRecords();
         if(sysStreets.size()>0){
             for(SysStreet sysStreet: sysStreets){
-                //查当前街道所属的区县
                 SysArea sysArea = sysAreaService.selectByCode(sysStreet.getAreaCode());
-                //查当前区县所属的城市
                 SysCity sysCity =sysCityService.selectByCode(sysArea.getCityCode());
-                //查当前城市所属的省份
                 String provinceName = sysProvinceService.selectProvinceNameByCode(sysCity.getProvinceCode());
                 String preName = provinceName+sysCity.getCityName()+sysArea.getAreaName();
                 sysStreet.setAreaName(preName);
-                if(sysStreet.getDataState().equals("0")){
-                    sysStreet.setDataState("正常");
-                }
-                if(sysStreet.getDataState().equals("1")){
-                    sysStreet.setDataState("停用");
-                }
             }
         }
         jsonObject.put("sysStreetList",sysStreets);
         return AjaxResult.success(jsonObject);
+    }
+
+    @GetMapping("/selectForm")
+    @ResponseBody
+    public AjaxResult selectForm(SysStreet sysStreet){
+        JSONObject jsonObject = new JSONObject();
+        if(sysStreet.getAreaName().equals("") && sysStreet.getStreetName().equals("") && sysStreet.getDataState().equals("")){
+            IPage<SysStreet> sysStreetIPage = sysStreetService.getAll(new Page(1,10));
+            jsonObject.put("total",sysStreetIPage.getTotal());
+            jsonObject.put("page",sysStreetIPage.getCurrent());
+            jsonObject.put("page_size",sysStreetIPage.getPages());
+            List<SysStreet> sysStreets = sysStreetIPage.getRecords();
+            if(sysStreets.size()>0){
+                for(SysStreet street: sysStreets){
+                    SysArea sysArea = sysAreaService.selectByCode(street.getAreaCode());
+                    SysCity sysCity =sysCityService.selectByCode(sysArea.getCityCode());
+                    String provinceName = sysProvinceService.selectProvinceNameByCode(sysCity.getProvinceCode());
+                    String preName = provinceName+sysCity.getCityName()+sysArea.getAreaName();
+                    street.setAreaName(preName);
+                }
+            }
+            jsonObject.put("sysStreetList",sysStreets);
+            return AjaxResult.success(jsonObject);
+        }else {
+            List<SysStreet> sysStreets = sysStreetService.selectForm(sysStreet);
+            if(sysStreets.size()>0){
+                for(SysStreet street: sysStreets){
+                    SysArea sysArea = sysAreaService.selectByCode(street.getAreaCode());
+                    SysCity sysCity =sysCityService.selectByCode(sysArea.getCityCode());
+                    String provinceName = sysProvinceService.selectProvinceNameByCode(sysCity.getProvinceCode());
+                    String preName = provinceName+sysCity.getCityName()+sysArea.getAreaName();
+                    street.setAreaName(preName);
+                }
+            }
+            jsonObject.put("sysStreetList",sysStreets);
+            return AjaxResult.success(jsonObject);
+        }
     }
 
     @PostMapping("/add")

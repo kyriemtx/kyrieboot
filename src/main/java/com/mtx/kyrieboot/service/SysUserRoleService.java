@@ -1,6 +1,9 @@
 package com.mtx.kyrieboot.service;
 
+import com.mtx.kyrieboot.entity.SysUser;
 import com.mtx.kyrieboot.entity.SysUserRole;
+
+import java.util.List;
 
 /**
  * @ClassName SysUserRoleService

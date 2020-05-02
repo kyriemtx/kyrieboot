@@ -67,4 +67,6 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
     @Select("select id from sys_role where name = #{name} order by create_time")
     String getIdByName(@Param("name") String name);
 
+    @Select("select * from sys_role")
+    List<SysRole> getAll();
 }

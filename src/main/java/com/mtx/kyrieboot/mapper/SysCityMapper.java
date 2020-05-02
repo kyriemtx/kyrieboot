@@ -33,7 +33,7 @@ public interface SysCityMapper extends BaseMapper<SysCity> {
      * @param cityName
      * @return
      */
-    @Select("select * from sys_city where city_name =#{cityName}")
+    @Select("select * from sys_city where city_name = #{cityName}")
     SysCity selectByName(@Param("cityName") String cityName);
 
 
@@ -71,5 +71,8 @@ public interface SysCityMapper extends BaseMapper<SysCity> {
 
     @Select("select * from sys_city")
     List<SysCity> areaSelect();
+
+
+    List<SysCity> queryAll(SysCity sysCity);
 
 }

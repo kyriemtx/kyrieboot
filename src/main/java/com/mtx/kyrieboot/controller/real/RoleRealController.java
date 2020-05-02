@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.base.AjaxResult;
 import com.mtx.kyrieboot.entity.SysMenu;
 import com.mtx.kyrieboot.entity.SysMenuRole;
+import com.mtx.kyrieboot.entity.SysRegion;
 import com.mtx.kyrieboot.entity.SysRole;
 import com.mtx.kyrieboot.service.SysMenuRoleService;
 import com.mtx.kyrieboot.service.SysMenuService;
@@ -18,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -90,6 +92,28 @@ public class RoleRealController {
             e.printStackTrace();
         }
         return AjaxResult.success(jsonObject);
+    }
+
+
+    @ResponseBody
+    @GetMapping("/selectForm")
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public AjaxResult selectForm(SysRole sysRole){
+        JSONObject jsonObject = new JSONObject();
+        List<SysRole> sysRoles = new ArrayList<>();
+        if(sysRole != null){
+            if(sysRole.getName() == null || sysRole.getName().equals("")){
+                sysRoles = sysRoleService.getAll();
+            }else {
+                SysRole role = sysRoleService.getByName(sysRole.getName());
+                sysRoles.add(role);
+            }
+        }else {
+            sysRoles = sysRoleService.getAll();
+        }
+        return AjaxResult.success(jsonObject);
+
+
     }
 
     @PostMapping("/addRole")

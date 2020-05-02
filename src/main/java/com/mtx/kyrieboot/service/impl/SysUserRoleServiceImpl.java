@@ -1,11 +1,14 @@
 package com.mtx.kyrieboot.service.impl;
 
+import com.mtx.kyrieboot.entity.SysUser;
 import com.mtx.kyrieboot.entity.SysUserRole;
 import com.mtx.kyrieboot.mapper.SysUserRoleMapper;
 import com.mtx.kyrieboot.service.SysUserRoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @ClassName SysUserRoleServiceImpl

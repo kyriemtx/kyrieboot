@@ -84,4 +84,7 @@ public interface SysAreaService {
      */
     List<SysArea> streetSelect();
 
+
+    List<SysArea> selectForm(SysArea sysArea);
+
 }

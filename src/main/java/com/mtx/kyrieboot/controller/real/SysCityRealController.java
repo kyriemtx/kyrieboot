@@ -45,17 +45,42 @@ public class SysCityRealController {
             for(SysCity sysCity : sysCities){
                 String provinceName = sysProvinceService.selectProvinceNameByCode(sysCity.getProvinceCode());
                 sysCity.setProvinceName(provinceName);
-                if(sysCity.getDataState().equals("0")){
-                    sysCity.setDataState("正常");
-                }
-                if(sysCity.getDataState().equals("1")){
-                    sysCity.setDataState("停用");
-                }
             }
         }
         jsonObject.put("sysCityList",sysCities);
 
         return AjaxResult.success(jsonObject);
+    }
+
+    @ResponseBody
+    @GetMapping("/selectForm")
+    public AjaxResult selectForm(SysCity sysCity){
+        JSONObject jsonObject = new JSONObject();
+        if(sysCity.getProvinceName().equals("") && sysCity.getCityName().equals("") && sysCity.getDataState().equals("")){
+            IPage<SysCity> sysCityIPage = sysCityService.getAll(new Page(1, 10));
+            jsonObject.put("total",sysCityIPage.getTotal());
+            jsonObject.put("page",sysCityIPage.getCurrent());
+            jsonObject.put("page_size",sysCityIPage.getSize());
+            List<SysCity> sysCities = sysCityIPage.getRecords();
+            if(sysCities.size()>0){
+                for(SysCity city : sysCities){
+                    String provinceName = sysProvinceService.selectProvinceNameByCode(city.getProvinceCode());
+                    city.setProvinceName(provinceName);
+                }
+            }
+            jsonObject.put("sysCityList",sysCities);
+            return AjaxResult.success(jsonObject);
+        }else {
+            List<SysCity> sysCities = sysCityService.selectForm(sysCity);
+            if(sysCities.size()>0){
+                for(SysCity city : sysCities){
+                    String provinceName = sysProvinceService.selectProvinceNameByCode(city.getProvinceCode());
+                    city.setProvinceName(provinceName);
+                }
+            }
+            jsonObject.put("sysCityList",sysCities);
+            return AjaxResult.success(jsonObject);
+        }
     }
 
 

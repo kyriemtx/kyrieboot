@@ -69,4 +69,8 @@ public class SysRoleServiceImpl implements SysRoleService {
         return sysRoleMapper.getIdByName(name);
     }
 
+    @Override
+    public List<SysRole> getAll() {
+        return sysRoleMapper.getAll();
+    }
 }

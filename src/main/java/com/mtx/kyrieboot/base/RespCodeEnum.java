@@ -9,7 +9,9 @@ package com.mtx.kyrieboot.base;
 public enum  RespCodeEnum {
 
     SUCCESS("200","成功"),
-    INTERNAL_SERVER_ERROR("500","Unknown Internal Error");
+    INTERNAL_SERVER_ERROR("500","Unknown Internal Error"),
+    FIND_RES_NULL("100","未找到相关信息，请更换查询条件后重试"),
+    ;
             ;
 
     private String code;

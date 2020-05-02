@@ -34,6 +34,22 @@ var vm = new Vue({
                 }
             });
         },
+        roleSearch:function() {
+            var sysRole = {
+                'name':$("#name").val(),
+            };
+            $.ajax({
+                cache : true,
+                type : "GET",
+                url : context + 'role/selectForm',
+                data : sysRole,
+                dataType : 'json',
+                contentType:'application/json',
+                success: function (res) {
+                    vm.tableData = res.respData.sysRoleList;
+                }
+            })
+        },
         handleDelete:function(row,tableData) {
             layer.confirm("您确定要删除吗？", function (index) {
                 $.ajax({

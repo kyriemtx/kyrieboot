@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link th:href="@{/static/css/layui/layui.css}" rel="stylesheet">
+    <link th:href="@{/static/css/kyrieboot-ui.css}" rel="stylesheet">
     <link th:href="@{/static/css/style.css}" rel="stylesheet">
     <link th:href="@{/static/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/static/css/layer/layer.css}" rel="stylesheet">
@@ -16,7 +17,40 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
             <div class="layui-card">
-                <span style="margin-left: 92%" @click="addRole()" class="btn btn-primary">新增</span>
+                <div class="btn-group-sm">
+                    <form>
+                        <div class="select-list">
+                            <ul>
+                                <li>
+                                    角色名称：<input type="text" name="name" id="postName"/>
+                                </li>
+                                <li>
+                                    状态：<select name="postStatus" id="postStatus">
+                                    <option value="">所有</option>
+                                    <option value="0">正常</option>
+                                    <option value="1">停用</option>
+                                </select>
+                                <li>
+                                    <a class="btn btn-primary btn-rounded btn-sm" @click="postSearch()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                                </li>
+                                <li>
+                                    <button type="reset" class="btn btn-primary btn-rounded btn-sm"><i class="fa fa-refresh"></i>&nbsp;重置</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+                <div class="btn-group-sm" style="margin-left: 84%">
+                    <a class="btn btn-success">
+                        <i class="fa fa-plus" ></i><span @click="addPost()">新增</span>
+                    </a>
+                    <a class="btn btn-info">
+                        <i class="fa fa-upload"></i><span @click="">导入</span>
+                    </a>
+                    <a class="btn btn-warning">
+                        <i class="fa fa-download"></i><span @click="">导出</span>
+                    </a>
+                </div>
                 <div class="layui-card-body">
                     <el-table
                             :data="tableData"
@@ -38,11 +72,6 @@
                         <el-table-column
                                 prop="postSort"
                                 label="排序"
-                                align="center">
-                        </el-table-column>
-                        <el-table-column
-                                prop="postStatus"
-                                label="状态"
                                 align="center">
                         </el-table-column>
                         <el-table-column

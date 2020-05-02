@@ -21,6 +21,24 @@ $().ready(function(){
                     }
                 });
             },
+            userSearch:function() {
+                var sysUser;
+                sysUser = {
+                    'nickName':$("#nickName").val(),
+                    'sex':$('#sex option:selected').val()
+                };
+                $.ajax({
+                    cache : true,
+                    type : "GET",
+                    url : context + 'user/selectForm',
+                    data : sysUser,
+                    dataType : 'json',
+                    contentType:'application/json',
+                    success: function (res) {
+                        vm.tableData = res.respData.sysUserList;
+                    }
+                })
+            },
             handleEdit: function(row) {
                 layer.open({
                     type: 2,

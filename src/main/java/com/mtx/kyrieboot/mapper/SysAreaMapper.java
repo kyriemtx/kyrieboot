@@ -34,7 +34,7 @@ public interface SysAreaMapper extends BaseMapper<SysArea> {
      * @param areaName
      * @return
      */
-    @Select("select * from sys_area where area_name =#{areaName}")
+    @Select("select * from sys_area where area_name = #{areaName}")
     SysArea selectByName(@Param("areaName") String areaName);
 
 
@@ -66,5 +66,8 @@ public interface SysAreaMapper extends BaseMapper<SysArea> {
 
     @Select("select * from sys_area")
     List<SysArea> streetSelect();
+
+
+    List<SysArea> queryAll(SysArea sysArea);
 
 }

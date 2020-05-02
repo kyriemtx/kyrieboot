@@ -2,6 +2,7 @@ package com.mtx.kyrieboot.controller.real;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.base.AjaxResult;
 import com.mtx.kyrieboot.entity.SysPost;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -55,6 +57,21 @@ public class SysPostRealController {
         return AjaxResult.success(jsonObject);
     }
 
+    @ResponseBody
+    @GetMapping("/selectForm")
+    @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+    public AjaxResult selectForm(SysPost sysPost){
+        JSONObject jsonObject = new JSONObject();
+        List<SysPost> sysPosts = new ArrayList<>();
+        if(sysPost == null){
+            sysPosts = sysPostService.getAll();
+        }else {
+            sysPosts = sysPostService.selectForm(sysPost);
+        }
+        jsonObject.put("sysPostList",sysPosts);
+        return AjaxResult.success(jsonObject);
+
+    }
 
     @PostMapping("/addPost")
     @ResponseBody

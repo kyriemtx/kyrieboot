@@ -3,8 +3,10 @@ package com.mtx.kyrieboot.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.mtx.kyrieboot.entity.SysArea;
 import com.mtx.kyrieboot.entity.SysStreet;
 import com.mtx.kyrieboot.mapper.SysStreetMapper;
+import com.mtx.kyrieboot.service.SysAreaService;
 import com.mtx.kyrieboot.service.SysStreetService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,8 @@ public class SysStreetServiceImpl implements SysStreetService {
 
     @Autowired
     private SysStreetMapper sysStreetMapper;
+    @Autowired
+    private SysAreaService sysAreaService;
 
     @Override
     public SysStreet selectByStreetCode(String streetCode) {
@@ -70,5 +74,18 @@ public class SysStreetServiceImpl implements SysStreetService {
     @Override
     public int updateSysStreet(SysStreet sysStreet) {
         return sysStreetMapper.updateById(sysStreet);
+    }
+
+    @Override
+    public List<SysStreet> selectForm(SysStreet sysStreet) {
+       if(sysStreet != null){
+           if(sysStreet.getAreaName() != null){
+               SysArea sysArea = sysAreaService.selectByName(sysStreet.getAreaName());
+               if(sysArea != null){
+                   sysStreet.setAreaCode(sysArea.getAreaCode());
+               }
+           }
+       }
+        return sysStreetMapper.queryAll(sysStreet);
     }
 }

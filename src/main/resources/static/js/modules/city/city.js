@@ -34,6 +34,26 @@ var vm = new Vue({
                 }
             });
         },
+
+        citySearch:function() {
+            var sysCity = {
+                'provinceName' : $('#provinceName').val(),
+                'cityName' : $('#cityName').val(),
+                'dataState':$('#dataState option:selected').val()
+            };
+            $.ajax({
+                cache : true,
+                type : "GET",
+                url : context + 'city/selectForm',
+                data : sysCity,
+                dataType : 'json',
+                contentType:'application/json',
+                success: function (res) {
+                    vm.tableData = res.respData.sysCityList;
+                }
+            })
+        },
+
         handleDelete:function(row,tableData) {
             layer.confirm("您确定要删除吗？", function (index) {
                 $.ajax({

@@ -33,6 +33,26 @@ var vm = new Vue({
                 }
             });
         },
+
+        areaSearch:function() {
+            var sysArea = {
+                'cityName' : $('#cityName').val(),
+                'areaName' : $('#areaName').val(),
+                'dataState':$('#dataState option:selected').val()
+            };
+            $.ajax({
+                cache : true,
+                type : "GET",
+                url : context + 'area/selectForm',
+                data : sysArea,
+                dataType : 'json',
+                contentType:'application/json',
+                success: function (res) {
+                    vm.tableData = res.respData.sysAreaList;
+                }
+            })
+        },
+
         handleDelete:function(row,tableData) {
             layer.confirm("您确定要删除吗？", function (index) {
                 $.ajax({

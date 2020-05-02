@@ -65,6 +65,42 @@ public class SysAreaRealController {
 
     }
 
+    @ResponseBody
+    @GetMapping("/selectForm")
+    public AjaxResult selectForm(SysArea sysArea){
+        JSONObject jsonObject = new JSONObject();
+        if(sysArea.getCityName().equals("") && sysArea.getAreaName().equals("") && sysArea.getDataState().equals("")){
+            IPage<SysArea> sysAreaIPage = sysAreaService.getAll(new Page(1,10));
+            jsonObject.put("total",sysAreaIPage.getTotal());
+            jsonObject.put("page",sysAreaIPage.getCurrent());
+            jsonObject.put("page_size",sysAreaIPage.getPages());
+            List<SysArea> sysAreas = sysAreaIPage.getRecords();
+            if(sysAreas.size()>0){
+                for(SysArea area : sysAreas){
+                    SysCity sysCity = sysCityService.selectByCode(area.getCityCode());
+                    String provinceName = sysProvinceService.selectProvinceNameByCode(sysCity.getProvinceCode());
+                    String prdName = provinceName+sysCity.getCityName();
+                    area.setCityName(prdName);
+                }
+            }
+            jsonObject.put("sysAreaList",sysAreas);
+            return AjaxResult.success(jsonObject);
+        }else {
+            List<SysArea> sysAreas = sysAreaService.selectForm(sysArea);
+            if(sysAreas.size()>0){
+                for(SysArea area : sysAreas){
+                    SysCity sysCity = sysCityService.selectByCode(area.getCityCode());
+                    String provinceName = sysProvinceService.selectProvinceNameByCode(sysCity.getProvinceCode());
+                    String prdName = provinceName+sysCity.getCityName();
+                    area.setCityName(prdName);
+                }
+            }
+            jsonObject.put("sysAreaList",sysAreas);
+            return AjaxResult.success(jsonObject);
+        }
+
+    }
+
 
     @ResponseBody
     @PostMapping("/addArea")
