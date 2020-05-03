@@ -1,7 +1,7 @@
 var vm = new Vue({
     el: '#LAY_app',
     data: {
-        loginName: '',
+        nickName: '',
         menuList: ''
     },
     methods: {
@@ -16,7 +16,7 @@ var vm = new Vue({
             url: 'menu/getMenulist',
             type: 'GET',
             success: function (res) {
-                vm.loginName = res.respData.name;
+                vm.nickName = res.respData.nickName;
                 vm.menuList = res.respData.menuList;
             }
         })

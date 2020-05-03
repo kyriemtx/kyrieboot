@@ -39,6 +39,26 @@ $().ready(function(){
                     }
                 })
             },
+            userExport : function(){
+
+                $.ajax({
+                    cache : true,
+                    type : "GET",
+                    url : context + 'user/export',
+                    success: function (res) {
+                        if(res.respData.code == 200){
+                            layer.msg("导出文件成功");
+                            /*window.location.href= context + 'user/export'*/
+                        }
+                        else {
+                            layer.msg("下载文件失败");
+                        }
+                    },
+                    error: function() {
+                        layer.msg("下载文件失败");
+                    }
+                })
+            },
             handleEdit: function(row) {
                 layer.open({
                     type: 2,

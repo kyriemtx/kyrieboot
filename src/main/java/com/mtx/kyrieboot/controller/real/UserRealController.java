@@ -11,6 +11,7 @@ import com.mtx.kyrieboot.service.SysRoleService;
 import com.mtx.kyrieboot.service.SysUserRoleService;
 import com.mtx.kyrieboot.service.SysUserService;
 import com.mtx.kyrieboot.utils.UUIDUtils;
+import com.mtx.kyrieboot.utils.excel.ExcelUtils;
 import com.mtx.kyrieboot.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -196,5 +200,36 @@ public class UserRealController {
             return AjaxResult.fail("更新基本资料失败");
         }
     }
-    
+
+    @ResponseBody
+    @RequestMapping("/export")
+    public AjaxResult export(){
+        JSONObject jsonObject = new JSONObject();
+        FileOutputStream fos = null;
+        String sheetName = "userList";
+        try {
+            fos = new FileOutputStream("D:\\work\\github\\boot_mp\\kyrieboot\\用户列表.xlsx");
+            List<SysUser> users = sysUserService.selectForm(new SysUser());
+            Boolean flag = ExcelUtils.writeExcel(fos, SysUser.class, users,sheetName);
+            if(flag == true){
+                jsonObject.put("code",200);
+            }else {
+                jsonObject.put("code",500);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return AjaxResult.success(jsonObject);
+    }
+
+
+
 }

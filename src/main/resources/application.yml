@@ -7,7 +7,7 @@ server:
 
 spring:
   profiles:
-    active: test
+    active: dev
   mvc:
     static-path-pattern: /static/**
   thymeleaf:

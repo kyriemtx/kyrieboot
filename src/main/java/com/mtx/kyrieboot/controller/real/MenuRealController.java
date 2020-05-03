@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.base.AjaxResult;
 import com.mtx.kyrieboot.entity.SysMenu;
+import com.mtx.kyrieboot.entity.SysUser;
 import com.mtx.kyrieboot.service.SysMenuService;
+import com.mtx.kyrieboot.service.SysUserService;
 import com.mtx.kyrieboot.utils.SecurityUtils;
 import com.mtx.kyrieboot.utils.UUIDUtils;
 import com.mtx.kyrieboot.vo.*;
@@ -31,15 +33,18 @@ public class MenuRealController {
 
     @Autowired
     private SysMenuService sysMenuService;
+    @Autowired
+    private SysUserService sysUserService;
 
     @GetMapping("/getMenulist")
     public AjaxResult getMenulist(){
         //获取当前用户登录用户
         Authentication userAuthentication = SecurityUtils.getCurrentUserAuthentication();
         String name = userAuthentication.getName();
+        SysUser sysUser = sysUserService.findByName(name);
         List<MenuVo> menuVoList = sysMenuService.getMenuByUser(name);
         JSONObject data = new JSONObject(16);
-        data.put("name",name);
+        data.put("nickName",sysUser.getNickName());
         data.put("menuList",menuVoList);
         return AjaxResult.success(data);
     }

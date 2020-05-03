@@ -46,11 +46,11 @@
                         <a class="btn btn-success">
                             <i class="fa fa-plus" ></i><span @click="addUser()">新增</span>
                         </a>
-                        <a class="btn btn-info">
-                            <i class="fa fa-upload"></i><span @click="">导入</span>
+                        <a class="btn btn-info" type="file">
+                            <i class="fa fa-upload"></i><span @click="importUser()">导入</span>
                         </a>
                         <a class="btn btn-warning">
-                            <i class="fa fa-download"></i><span @click="">导出</span>
+                            <i class="fa fa-download"></i><span @click="userExport()">导出</span>
                         </a>
                     </div>
                     <el-table
