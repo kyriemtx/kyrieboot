@@ -1,6 +1,6 @@
 package com.mtx.kyrieboot.vo;
 
-import com.mtx.kyrieboot.entity.SysUser;
+import com.mtx.kyrieboot.system.user.entity.SysUser;
 import lombok.Data;
 
 /**

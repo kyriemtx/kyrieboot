@@ -1,8 +1,8 @@
 package com.mtx.kyrieboot.config.filter;
 
-import com.mtx.kyrieboot.base.CommonConstants;
+import com.mtx.kyrieboot.common.CommonConstants;
 import com.mtx.kyrieboot.config.exception.BizException;
-import com.mtx.kyrieboot.service.RedisService;
+import com.mtx.kyrieboot.redis.RedisService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.mtx.kyrieboot.utils;
 
 import cn.hutool.core.io.resource.ClassPathResource;
-import com.mtx.kyrieboot.base.CommonConstants;
+import com.mtx.kyrieboot.common.CommonConstants;
 import nl.bitwalker.useragentutils.Browser;
 import nl.bitwalker.useragentutils.UserAgent;
 import org.lionsoul.ip2region.DataBlock;

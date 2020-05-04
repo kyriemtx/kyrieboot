@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
-<mapper namespace="com.mtx.kyrieboot.mapper.SysAreaMapper">
-    <resultMap type="com.mtx.kyrieboot.entity.SysArea" id="SysAreaMap">
+<mapper namespace="com.mtx.kyrieboot.system.areamanager.area.mapper.SysAreaMapper">
+    <resultMap type="com.mtx.kyrieboot.system.areamanager.area.entity.SysArea" id="SysAreaMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="areaCode" column="area_code" jdbcType="VARCHAR"/>
         <result property="cityCode" column="city_code" jdbcType="VARCHAR"/>
@@ -33,7 +33,7 @@
     </select>
 
     <!--通过实体作为筛选条件查询-->
-    <select id="queryAll" parameterType="com.mtx.kyrieboot.entity.SysArea" resultMap="SysAreaMap">
+    <select id="queryAll" parameterType="com.mtx.kyrieboot.system.areamanager.area.entity.SysArea" resultMap="SysAreaMap">
         select
           id, area_code, city_code, area_name, short_name, lng, lat, sort, gmt_create, gmt_modified, memo, data_state
         from sys_area

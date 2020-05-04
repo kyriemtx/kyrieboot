@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
-<mapper namespace="com.mtx.kyrieboot.mapper.SysProvinceMapper">
-    <resultMap type="com.mtx.kyrieboot.entity.SysProvince" id="SysProvinceMap">
+<mapper namespace="com.mtx.kyrieboot.system.areamanager.province.mapper.SysProvinceMapper">
+    <resultMap type="com.mtx.kyrieboot.system.areamanager.province.entity.SysProvince" id="SysProvinceMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="provinceCode" column="province_code" jdbcType="VARCHAR"/>
         <result property="provinceName" column="province_name" jdbcType="VARCHAR"/>
@@ -32,7 +32,7 @@
     </select>
 
     <!--通过实体作为筛选条件查询-->
-    <select id="queryAll"  parameterType="com.mtx.kyrieboot.entity.SysProvince" resultMap="SysProvinceMap">
+    <select id="queryAll" parameterType="com.mtx.kyrieboot.system.areamanager.province.entity.SysProvince" resultMap="SysProvinceMap">
         select
           id, province_code, province_name, short_name, lng, lat, sort, gmt_create, gmt_modified, memo, data_state
         from sys_province

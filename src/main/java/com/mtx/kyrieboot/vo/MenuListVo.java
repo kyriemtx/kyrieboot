@@ -1,6 +1,6 @@
 package com.mtx.kyrieboot.vo;
 
-import com.mtx.kyrieboot.entity.SysMenu;
+import com.mtx.kyrieboot.system.menu.entity.SysMenu;
 import lombok.Builder;
 import lombok.Data;
 

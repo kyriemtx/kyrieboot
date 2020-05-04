@@ -13,25 +13,25 @@
     <ul class="container">
         <li class="row">
             <p class="label">省 份</p>
-            <select name="provinceCode" id="provinceCode">
+            <select name="provinceCode" id="provinceCode"  onchange="selectCityByProvinceCode()">
                 <option value="">请选择</option>
             </select>
         </li>
         <li class="row">
             <p class="label">地 市</p>
-            <select name="cityCode" id="cityCode" onclick="selectCityByProvinceCode()">
+            <select name="cityCode" id="cityCode" onchange="selectAreaByCityCode()">
                 <option value="">请选择</option>
             </select>
         </li>
         <li class="row">
             <p class="label">县/区</p>
-            <select name="areaCode" id="areaCode" onclick="selectAreaByCityCode()">
+            <select name="areaCode" id="areaCode" onchange="selectStreetByAreaCode()">
                 <option value="">请选择</option>
             </select>
         </li>
         <li class="row">
             <p class="label">街 道</p>
-            <select name="streetCode" id="streetCode" onclick="selectStreetByAreaCode()">
+            <select name="streetCode" id="streetCode">
                 <option value="">请选择</option>
             </select>
         </li>
@@ -42,7 +42,7 @@
 <script>
     //页面加载的时候  加载省份信息
     function loadProvinces() {
-        var provinceCodesUrl = "http://localhost:9999/kyrie/province/citySelect";
+        var provinceCodesUrl = "http://localhost:8800/kyrie/province/citySelect";
         $.ajax({
             url: provinceCodesUrl,
             dataType: 'json',
@@ -61,7 +61,7 @@
 
     //根据省份代码选择城市信息
     function selectCityByProvinceCode() {
-        var cityCodesUrl = "http://localhost:9999/kyrie/city/selectCitiesByProvinceCode";
+        var cityCodesUrl = "http://localhost:8800/kyrie/city/selectCitiesByProvinceCode";
         var provinceCode = $("#provinceCode option:selected").val();
         $.ajax({
             url: cityCodesUrl,
@@ -77,6 +77,8 @@
                     var lable = data.respData.data[i].cityName;
                     $('#cityCode').append("<option value="+value+">"+lable+"</option>");
                 }
+                $('#areaCode').val("")
+                $('#streetCode').val("")
             },
             error : function(data) {
                 console.log("下拉框数据加载失败")
@@ -84,12 +86,11 @@
         })
     }
 
-
-
     //根据城市代码选择区县信息
     function selectAreaByCityCode() {
-        var areaCodesUrl = "http://localhost:9999/kyrie/area/selectByCityCode";
+        var areaCodesUrl = "http://localhost:8800/kyrie/area/selectByCityCode";
         var cityCode = $("#cityCode option:selected").val();
+        console.info(cityCode)
         $.ajax({
             url: areaCodesUrl,
             dataType: 'json',
@@ -98,12 +99,14 @@
             },
             type: 'get',
             success : function(data) {
+                debugger;
                 $("#areaCode").empty();
                 for(var i = 0;i<data.respData.data.length; i++){
                     var value = data.respData.data[i].areaCode;
                     var lable = data.respData.data[i].areaName;
                     $('#areaCode').append("<option value="+value+">"+lable+"</option>");
                 }
+                $('#streetCode').val("")
             },
             error : function(data) {
                 console.log("下拉框数据加载失败")
@@ -114,7 +117,7 @@
 
     //根据区县代码选择街道信息
     function selectStreetByAreaCode() {
-        var streetCodesUrl = "http://localhost:9999/kyrie/street/selectByAreaCode";
+        var streetCodesUrl = "http://localhost:8800/kyrie/street/selectByAreaCode";
         var areaCode = $("#areaCode option:selected").val();
         $.ajax({
             url: streetCodesUrl,

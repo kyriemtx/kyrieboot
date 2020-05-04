@@ -1,7 +1,7 @@
 package com.mtx.kyrieboot.config.security.handler;
 
-import com.mtx.kyrieboot.base.CommonConstants;
-import com.mtx.kyrieboot.service.SysLogService;
+import com.mtx.kyrieboot.common.CommonConstants;
+import com.mtx.kyrieboot.system.log.service.SysLogService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

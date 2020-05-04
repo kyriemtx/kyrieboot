@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
-<mapper namespace="com.mtx.kyrieboot.mapper.SysUserMapper">
-   <select id="selectAll" resultType="com.mtx.kyrieboot.entity.SysUser">
+<mapper namespace="com.mtx.kyrieboot.system.user.mapper.SysUserMapper">
+   <select id="selectAll" resultType="com.mtx.kyrieboot.system.user.entity.SysUser">
        select * from sys_user
    </select>
 </mapper>

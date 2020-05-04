@@ -1,7 +1,7 @@
 package com.mtx.kyrieboot.config.interceptor;
 
-import com.mtx.kyrieboot.entity.SysMenu;
-import com.mtx.kyrieboot.service.SysMenuService;
+import com.mtx.kyrieboot.system.menu.entity.SysMenu;
+import com.mtx.kyrieboot.system.menu.service.SysMenuService;
 import com.mtx.kyrieboot.utils.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

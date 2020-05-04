@@ -1,0 +1,82 @@
+package com.mtx.kyrieboot.system.user.service;
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.mtx.kyrieboot.system.user.entity.SysUser;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+/**
+ * @ClassName SysUserService
+ * @Description
+ * @Author tengxiao.ma
+ * @Date 2020/4/21 16:15
+ **/
+public interface SysUserService {
+
+    /**
+     * 根据姓名查询
+     * @param name 姓名
+     * @return 用户实例
+     */
+    SysUser findByName(@Param("name") String name);
+
+    /**
+     * 查询所有用户
+     * @param page 分页数据
+     * @return 所有用户集合
+     */
+    IPage<SysUser> getAll(Page page);
+
+    /**
+     * 根据id查用户
+     * @param id id
+     * @return 用户集合
+     */
+    SysUser getById(String id);
+
+    /**
+     * 根据id删除用户
+     * @param id id
+     * @return 返回值
+     */
+    int deleteById(String id);
+
+    /**
+     * 根据id用户
+     * @param sysUser 用户
+     * @return 返回值
+     */
+    int updateUser(SysUser sysUser);
+
+    /**
+     * 保存用户
+     * @param sysUser 用户
+     * @return 返回值
+     */
+    int insertUser(SysUser sysUser);
+
+    /**
+     * 根据用户id,更新密码
+     * @param password
+     * @param id
+     * @return
+     */
+    int updatePasswordById(String password, String id);
+
+    /**
+     * 页面表单查询
+     * @param sysUser
+     * @return
+     */
+    List<SysUser> selectForm(SysUser sysUser);
+
+    /**
+     * 根据用户ID重置密码
+     * @param password
+     * @param userId
+     * @return
+     */
+    int resetPassword(String password,String userId);
+}

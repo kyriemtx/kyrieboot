@@ -1,6 +1,6 @@
 package com.mtx.kyrieboot.vo;
 
-import com.mtx.kyrieboot.entity.SysRole;
+import com.mtx.kyrieboot.system.role.entity.SysRole;
 import lombok.Data;
 
 /**

@@ -1,9 +1,9 @@
 package com.mtx.kyrieboot.config.security.handler;
 
 import com.alibaba.fastjson.JSON;
-import com.mtx.kyrieboot.base.AjaxResult;
-import com.mtx.kyrieboot.base.CommonConstants;
-import com.mtx.kyrieboot.service.SysLogService;
+import com.mtx.kyrieboot.common.AjaxResult;
+import com.mtx.kyrieboot.common.CommonConstants;
+import com.mtx.kyrieboot.system.log.service.SysLogService;
 import com.mtx.kyrieboot.utils.RequestUtils;
 import com.mtx.kyrieboot.utils.ResponseUtils;
 import lombok.RequiredArgsConstructor;

@@ -40,7 +40,6 @@ $().ready(function(){
                 })
             },
             userExport : function(){
-
                 $.ajax({
                     cache : true,
                     type : "GET",
@@ -84,7 +83,7 @@ $().ready(function(){
                                 if (res.respData.code == 200){
                                     layer.msg("重置密码操作成功");
                                     vm.getUserList();
-                                } else if(res.data.code === 500){
+                                } else if(res.data.code == 500){
                                     layer.msg("重置密码操作失败");
                                 }
                             }

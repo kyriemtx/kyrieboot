@@ -1,6 +1,6 @@
 package com.mtx.kyrieboot.config.security;
 
-import com.mtx.kyrieboot.base.CommonConstants;
+import com.mtx.kyrieboot.common.CommonConstants;
 import com.mtx.kyrieboot.config.filter.ValidateCodeFilter;
 import com.mtx.kyrieboot.config.security.handler.CustomLogoutSuccessHandler;
 import lombok.RequiredArgsConstructor;

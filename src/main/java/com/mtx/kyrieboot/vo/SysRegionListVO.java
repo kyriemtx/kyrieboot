@@ -1,8 +1,7 @@
 package com.mtx.kyrieboot.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.mtx.kyrieboot.entity.SysRegion;
-import lombok.Builder;
+import com.mtx.kyrieboot.system.areamanager.region.entity.SysRegion;
 import lombok.Data;
 
 import java.util.Date;

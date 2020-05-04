@@ -1,9 +1,9 @@
 package com.mtx.kyrieboot.config.security;
 
-import com.mtx.kyrieboot.entity.SysRole;
-import com.mtx.kyrieboot.entity.SysUser;
-import com.mtx.kyrieboot.service.SysRoleService;
-import com.mtx.kyrieboot.service.SysUserService;
+import com.mtx.kyrieboot.system.role.entity.SysRole;
+import com.mtx.kyrieboot.system.user.entity.SysUser;
+import com.mtx.kyrieboot.system.role.service.SysRoleService;
+import com.mtx.kyrieboot.system.user.service.SysUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
