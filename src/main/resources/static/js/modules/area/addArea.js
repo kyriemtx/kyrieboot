@@ -86,7 +86,7 @@ function getArea(){
 
 
 function getCityCodes() {
-    var cityCodesUrl = "http://localhost:9999/kyrie/city/areaSelect";
+    var cityCodesUrl = "http://localhost:8800/kyrie/city/areaSelect";
     $.ajax({
         url: cityCodesUrl,
         dataType: 'json',

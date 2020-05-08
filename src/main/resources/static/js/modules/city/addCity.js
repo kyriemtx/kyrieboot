@@ -86,7 +86,7 @@ function getCity(){
 
 
 function getProvinceCodes() {
-    var provinceCodesUrl = "http://localhost:9999/kyrie/province/citySelect";
+    var provinceCodesUrl = "http://localhost:8800/kyrie/province/citySelect";
     $.ajax({
         url: provinceCodesUrl,
         dataType: 'json',

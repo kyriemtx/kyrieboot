@@ -1,7 +1,7 @@
 
 
 function getProvinces() {
-    var provinceCodesUrl = "http://localhost:9999/kyrie/province/citySelect";
+    var provinceCodesUrl = "http://localhost:8800/kyrie/province/citySelect";
     $.ajax({
         url: provinceCodesUrl,
         dataType: 'json',
@@ -19,7 +19,7 @@ function getProvinces() {
 }
 
 function selectCityByProvinceCode() {
-    var cityCodesUrl = "http://localhost:9999/kyrie/city/selectCitiesByProvinceCode";
+    var cityCodesUrl = "http://localhost:8800/kyrie/city/selectCitiesByProvinceCode";
     var provinceCode = document.getElementById("province");
 
     $.ajax({
