@@ -13,6 +13,8 @@ import com.mtx.kyrieboot.system.user.service.SysUserService;
 import com.mtx.kyrieboot.utils.UUIDUtils;
 import com.mtx.kyrieboot.utils.excel.ExcelUtils;
 import com.mtx.kyrieboot.vo.UserVO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -35,6 +37,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user")
+@Api(description = "用户管理")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserRealController {
 
@@ -47,6 +50,7 @@ public class UserRealController {
     private SysUserRoleService sysUserRoleService;
 
     @GetMapping("/getUserInfo")
+    @ApiOperation(value = "获取用户列表",notes = "查询所有用户列表")
     public AjaxResult getUserInfo(@RequestParam("page") int page,
                                   @RequestParam("page_size") int pageSize) {
         JSONObject jsonObject = new JSONObject();
@@ -80,6 +84,7 @@ public class UserRealController {
      */
     @GetMapping("/selectForm")
     @ResponseBody
+    @ApiOperation(value = "表单查询",notes = "表单条件查询")
     @Transactional(rollbackFor={RuntimeException.class, Exception.class})
     public AjaxResult selectForm(SysUser sysUser){
         JSONObject jsonObject = new JSONObject();
@@ -95,6 +100,7 @@ public class UserRealController {
 
 
     @GetMapping("/deleteUser")
+    @ApiOperation(value = "删除用户信息",notes = "删除用户接口")
     @Transactional(rollbackFor={RuntimeException.class, Exception.class})
     public AjaxResult deleteUser(@RequestParam("id")String id){
         JSONObject jsonObject = new JSONObject();
@@ -110,6 +116,7 @@ public class UserRealController {
 
     @PostMapping("/updateUser")
     @ResponseBody
+    @ApiOperation(value = "更新用户信息",notes = "更新用户接口")
     @Transactional(rollbackFor={RuntimeException.class, Exception.class})
     public AjaxResult updateRole(@RequestBody UserVO userVO){
         JSONObject jsonObject = new JSONObject();
@@ -128,6 +135,7 @@ public class UserRealController {
 
     @PostMapping("/addUser")
     @ResponseBody
+    @ApiOperation(value = "新增用户信息",notes = "新增用户接口")
     @Transactional(rollbackFor={RuntimeException.class, Exception.class})
     public AjaxResult addRole(@RequestBody UserVO userVO){
         JSONObject jsonObject = new JSONObject();
@@ -155,6 +163,7 @@ public class UserRealController {
     }
 
     @GetMapping("/editPassword")
+    @ApiOperation(value = "更改用户密码",notes = "更新用户密码")
     public AjaxResult editPassword(String id){
         JSONObject jsonObject = new JSONObject();
         String newPassword = new BCryptPasswordEncoder().encode(CommonConstants.CZMM);
@@ -169,6 +178,7 @@ public class UserRealController {
     }
 
     @GetMapping("/getAllRoleName")
+    @ApiOperation(value = "获取用户角色",notes = "获取用户角色")
     public AjaxResult getAllRoleName(){
         JSONObject jsonObject = new JSONObject();
         List<String> allRoleName = sysRoleService.getAllRoleName();
@@ -201,6 +211,7 @@ public class UserRealController {
 
     @ResponseBody
     @RequestMapping("/export")
+    @ApiOperation(value = "导出用户信息",notes = "导出用户信息")
     public AjaxResult export(){
         JSONObject jsonObject = new JSONObject();
         FileOutputStream fos = null;

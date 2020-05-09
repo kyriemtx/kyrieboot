@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>api文档</title>
+</head>
+<body onload="loadSwaggerUI()">
+</body>
+<script th:src="@{/static/js/jquery.1.12.4.min.js}"></script>
+<script type="text/javascript">
+    function loadSwaggerUI(){
+    windows.location.href = "http://localhost:8800/kyrie/swagger-ui.html";
+    }
+</script>
+</html>
