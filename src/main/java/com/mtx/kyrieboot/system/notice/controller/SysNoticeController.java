@@ -2,7 +2,6 @@ package com.mtx.kyrieboot.system.notice.controller;
 
 import com.mtx.kyrieboot.system.notice.entity.SysNotice;
 import com.mtx.kyrieboot.system.notice.service.SysNoticeService;
-import com.mtx.kyrieboot.system.notice.service.SysNoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +23,6 @@ public class SysNoticeController {
 
     @Autowired
     private SysNoticeService sysNoticeService;
-
 
     @GetMapping("/list")
     public String index(){

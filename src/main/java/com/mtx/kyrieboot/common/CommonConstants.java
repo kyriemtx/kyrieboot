@@ -56,4 +56,11 @@ public class CommonConstants {
      */
     public static final String CZMM = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92";
 
+    /**
+     * SEQUENCE_PREFIX
+     */
+    public static final char SEQUENCE_PREFIX = '0';
+
+    public static final String TEMP_ID_SEQ_PREFIX = "ST";
+
 }

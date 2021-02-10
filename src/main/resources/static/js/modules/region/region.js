@@ -66,14 +66,14 @@ var vm = new Vue({
 
         getRegionList: function () {
             $.ajax({
-                url: context + 'region/getRegionInfo?page=' + this.current_page + '&page_size=' + this.page_size,
+                url: context + 'region/getRegionInfo1',
                 type: 'GET',
                 success: function (res) {
                     debugger;
                     vm.tableData = res.respData.regionList;
-                    vm.total = res.respData.total;
+                    /*vm.total = res.respData.total;
                     vm.page_size = res.respData.page_size;
-                    vm.current_page = res.respData.page;
+                    vm.current_page = res.respData.page;*/
                 }
             });
         }
