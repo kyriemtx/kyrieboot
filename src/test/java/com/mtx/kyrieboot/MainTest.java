@@ -1,34 +1,12 @@
 package com.mtx.kyrieboot;
 
-import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.mtx.kyrieboot.common.CommonConstants;
-import com.mtx.kyrieboot.common.KeyConstants;
-import com.mtx.kyrieboot.kyriegen.entity.TableEntity;
-import com.mtx.kyrieboot.kyriegen.service.KyrieGenService;
-import com.mtx.kyrieboot.sequence.SequenceClient;
-import com.mtx.kyrieboot.system.post.entity.SysPost;
-import com.mtx.kyrieboot.system.post.service.SysPostService;
-import com.mtx.kyrieboot.system.role.entity.SysRole;
-import com.mtx.kyrieboot.system.role.service.SysRoleService;
-import com.mtx.kyrieboot.utils.DateUtil;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.List;
-
 /**
  * @ClassName MainTest
  * @Description
  * @Author tengxiao.ma
  * @Date 2020/4/22 12:58
  **/
-@RunWith(SpringRunner.class)
+/*@RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
 public class MainTest {
@@ -77,4 +55,4 @@ public class MainTest {
         System.err.println("运行结果："+tempId);
     }
 
-}
+}*/

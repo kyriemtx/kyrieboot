@@ -8,7 +8,7 @@ management:
         include: info,health,beans
 spring:
   datasource:
-    url: jdbc:mysql://47.102.220.5:3306/kyrieboot_pro?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://47.102.220.5:3306/kyrieboot20210225?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: kyrie
     password: kyrie
