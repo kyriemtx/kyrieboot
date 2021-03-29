@@ -13,6 +13,8 @@ import com.mtx.kyrieboot.service.SysUserService;
 import com.mtx.kyrieboot.utils.UUIDUtils;
 import com.mtx.kyrieboot.utils.excel.ExcelUtils;
 import com.mtx.kyrieboot.vo.UserVO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -35,6 +37,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user")
+@Api(description = "用户管理")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserRealController {
 
@@ -46,6 +49,7 @@ public class UserRealController {
     @Autowired
     private SysUserRoleService sysUserRoleService;
 
+    @ApiOperation(value = "获取用户列表",notes = "分页查询用户信息")
     @GetMapping("/getUserInfo")
     public AjaxResult getUserInfo(@RequestParam("page") int page,
                                   @RequestParam("page_size") int pageSize) {
