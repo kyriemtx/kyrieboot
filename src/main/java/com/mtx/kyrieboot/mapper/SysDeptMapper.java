@@ -1,7 +1,12 @@
 package com.mtx.kyrieboot.mapper;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mtx.kyrieboot.entity.SysDept;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
 import java.util.List;
 
 /**
@@ -10,6 +15,7 @@ import java.util.List;
  * @author makejava
  * @since 2021-03-29 14:08:58
  */
+@Mapper
 public interface SysDeptMapper {
 
     /**
@@ -61,5 +67,8 @@ public interface SysDeptMapper {
      * @return 影响行数
      */
     int deleteById(Long deptId);
+
+    @Select("SELECT * FROM sys_dept  ORDER BY dept_id")
+    IPage<SysDept> findByPage(Page page);
 
 }
