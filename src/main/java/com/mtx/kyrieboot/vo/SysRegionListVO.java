@@ -1,8 +1,6 @@
 package com.mtx.kyrieboot.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.mtx.kyrieboot.entity.SysRegion;
-import lombok.Builder;
 import lombok.Data;
 
 import java.util.Date;
@@ -40,7 +38,7 @@ public class SysRegionListVO {
     /** 状态 **/
     private String status;
     /** 子区域 **/
-    private List<SysRegion> children;
+//    private List<SysRegion> children;
 
 
 

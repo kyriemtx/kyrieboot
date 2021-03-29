@@ -13,7 +13,7 @@ var vm = new Vue({
                 title: '新增',
                 maxmin: true,
                 shadeClose: false, // 点击遮罩关闭层
-                area: ['800px', '520px'],
+                area: ['600px', '520px'],
                 content: context + 'menu/add',
                 end: function () {
                     vm.getMenuList();
@@ -26,7 +26,7 @@ var vm = new Vue({
                 title: '编辑',
                 maxmin: true,
                 shadeClose: false, // 点击遮罩关闭层
-                area: ['800px', '520px'],
+                area: ['600px', '520px'],
                 content: context + 'menu/update?id='+row.id,
                 end: function () {
                     vm.getMenuList();

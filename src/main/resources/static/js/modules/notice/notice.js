@@ -13,7 +13,7 @@ var vm = new Vue({
                 title: '新增',
                 maxmin: true,
                 shadeClose: false,
-                area: ['800px', '520px'],
+                area: ['600px', '520px'],
                 content: context + 'notice/add',
                 end: function () {
                     vm.getNotice();
@@ -26,7 +26,7 @@ var vm = new Vue({
                 title: '编辑',
                 maxmin: true,
                 shadeClose: false,
-                area: ['800px', '520px'],
+                area: ['600px', '520px'],
                 content: context + 'notice/update?id='+row.id,
                 end: function () {
                     vm.getNotice();

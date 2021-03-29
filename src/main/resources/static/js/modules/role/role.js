@@ -13,7 +13,7 @@ var vm = new Vue({
                 title: '新增',
                 maxmin: true,
                 shadeClose: false, // 点击遮罩关闭层
-                area: ['800px', '520px'],
+                area: ['600px', '520px'],
                 content: context + 'role/add',
                 end: function () {
                     vm.getRoleList();
@@ -27,7 +27,7 @@ var vm = new Vue({
                 title: '修改',
                 maxmin: true,
                 shadeClose: false, // 点击遮罩关闭层
-                area: ['800px', '520px'],
+                area: ['600px', '520px'],
                 content: context + 'role/update?name='+row.name+"&authority="+row.authority+"&id="+row.id, // iframe的url
                 end: function () {
                     vm.getRoleList();

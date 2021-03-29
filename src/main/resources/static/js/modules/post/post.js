@@ -13,7 +13,7 @@ var vm = new Vue({
                 title: '新增',
                 maxmin: true,
                 shadeClose: false, // 点击遮罩关闭层
-                area: ['800px', '520px'],
+                area: ['600px', '520px'],
                 content: context + 'post/add',
                 end: function () {
                     vm.getPostList();
@@ -27,7 +27,7 @@ var vm = new Vue({
                 title: '编辑',
                 maxmin: true,
                 shadeClose: false, // 点击遮罩关闭层
-                area: ['800px', '520px'],
+                area: ['600px', '520px'],
                 content: context + 'post/update?postId='+row.postId,
                 end: function () {
                     vm.getPostList();
