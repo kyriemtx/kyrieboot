@@ -24,7 +24,7 @@ public interface SysDeptMapper {
      * @param deptId 主键
      * @return 实例对象
      */
-    SysDept queryById(Long deptId);
+    SysDept queryById(String deptId);
 
     /**
      * 查询指定行数据

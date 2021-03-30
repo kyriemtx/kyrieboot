@@ -4,8 +4,8 @@
 
     <resultMap id="BaseResultMap" type="com.mtx.kyrieboot.entity.SysDept">
         <!--@Table sys_dept-->
-        <result property="deptId" column="dept_id" jdbcType="INTEGER"/>
-        <result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+        <result property="deptId" column="dept_id" jdbcType="VARCHAR"/>
+        <result property="parentId" column="parent_id" jdbcType="VARCHAR"/>
         <result property="deptName" column="dept_name" jdbcType="VARCHAR"/>
         <result property="orderNum" column="order_num" jdbcType="INTEGER"/>
         <result property="leader" column="leader" jdbcType="VARCHAR"/>

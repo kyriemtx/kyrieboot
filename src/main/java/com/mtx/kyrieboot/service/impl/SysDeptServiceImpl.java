@@ -8,6 +8,7 @@ import com.mtx.kyrieboot.service.SysDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,8 +36,19 @@ public class SysDeptServiceImpl implements SysDeptService {
 
     @Override
     public int addDept(SysDept sysDept) {
-        return 0;
+        return sysDeptMapper.insert(sysDept);
     }
+
+    @Override
+    public SysDept findByDeptId(String deptId) {
+        return sysDeptMapper.queryById(deptId);
+    }
+
+    @Override
+    public int updateDeptById(SysDept sysDept) {
+        return sysDeptMapper.update(sysDept);
+    }
+
 
 
 }

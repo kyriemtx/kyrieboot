@@ -1,7 +1,8 @@
 package com.mtx.kyrieboot.entity;
 
-import java.util.Date;
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 /**
  * 部门表(SysDept)实体类
@@ -14,11 +15,11 @@ public class SysDept implements Serializable {
     /**
     * 部门id
     */
-    private Long deptId;
+    private String deptId;
     /**
     * 父部门id
     */
-    private Long parentId;
+    private String parentId;
     /**
     * 部门名称
     */
@@ -64,20 +65,29 @@ public class SysDept implements Serializable {
     */
     private Date updateTime;
 
+    private List<SysDept> children;
 
-    public Long getDeptId() {
+    public List<SysDept> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<SysDept> children) {
+        this.children = children;
+    }
+
+    public String getDeptId() {
         return deptId;
     }
 
-    public void setDeptId(Long deptId) {
+    public void setDeptId(String deptId) {
         this.deptId = deptId;
     }
 
-    public Long getParentId() {
+    public String getParentId() {
         return parentId;
     }
 
-    public void setParentId(Long parentId) {
+    public void setParentId(String parentId) {
         this.parentId = parentId;
     }
 
