@@ -16,9 +16,12 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -30,7 +33,7 @@ import java.util.List;
  * @Description:
  */
 @Slf4j
-@RestController
+@Controller
 @RequestMapping("/dept")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class SysDeptController {
@@ -47,17 +50,31 @@ public class SysDeptController {
         return "module/dept/addDept";
     }
 
+    @GetMapping("/update")
+    public String update(String deptId, Model model){
+        SysDept sysDept = sysDeptService.findByDeptId(deptId);
+        model.addAttribute("sysDept",sysDept);
+        return "module/dept/updateDept";
+    }
+
 
     @GetMapping("/getDeptInfo")
-    public AjaxResult getDeptInfo(@Param("page")int page,@Param("pageSize") int pageSize){
+    @ResponseBody
+    public AjaxResult getDeptInfo(@Param("page")Integer page,@Param("page_size") Integer pageSize){
         log.info("分页查询部门信息列表，请求参数：page:{},pageSize:{}",page,pageSize);
+        if(ObjectUtils.isEmpty(page)){
+            page = 1;
+        }
+        if(ObjectUtils.isEmpty(pageSize)){
+            pageSize =10;
+        }
         AjaxResult ajaxResult = new AjaxResult();
         JSONObject jsonObject = new JSONObject();
         try {
             IPage<SysDept> sysDeptIPage = sysDeptService.getAll(new Page(page,pageSize));
             jsonObject.put("page",sysDeptIPage.getCurrent());
             jsonObject.put("page_size",sysDeptIPage.getSize());
-            List<SysDept> sysDepts = sysDeptIPage.getRecords();
+            List<SysDept> sysDepts = buildDeptTree(sysDeptIPage.getRecords());
             if(sysDepts.size()>0){
                 for(SysDept sysDept : sysDepts){
                     if(sysDept.getStatus().equals("0")){
@@ -73,16 +90,18 @@ public class SysDeptController {
                     }
                 }
             }
-            jsonObject.put("depts",sysDepts);
+            jsonObject.put("deptTree",sysDepts);
         }catch (Exception e){
             log.info("分页查询部门信息列表,异常信息：{}",e.getMessage());
             throw e;
         }
-        log.info("分页查询部门信息列表，响应结果：{}", JSON.toJSONString(AjaxResult.success(jsonObject)));
+        ajaxResult.setRespData(jsonObject);
+        log.info("分页查询部门信息列表，响应结果：{}", JSON.toJSONString(ajaxResult));
         return ajaxResult;
     }
 
     @GetMapping("/addDept")
+    @ResponseBody
     public AjaxResult addDept(SysDept sysDept){
         log.info("部门信息新增接口，请求参数：{}",JSON.toJSONString(sysDept));
         AjaxResult ajaxResult = new AjaxResult();
@@ -111,7 +130,8 @@ public class SysDeptController {
 
 
     @GetMapping("/updateDept")
-    public AjaxResult updateDept(SysDept sysDept){
+    @ResponseBody
+    public AjaxResult updateDept(@RequestBody SysDept sysDept){
         log.info("部门信息编辑接口，请求参数：{}",JSON.toJSONString(sysDept));
         AjaxResult ajaxResult = new AjaxResult();
         try {
@@ -144,6 +164,7 @@ public class SysDeptController {
 
 
     @GetMapping("/deptTree")
+    @ResponseBody
     public AjaxResult deptTree(){
         AjaxResult ajaxResult = new AjaxResult();
         log.info("获取组织机构树接口");

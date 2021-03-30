@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/static/css/layui/layui.css}" rel="stylesheet">
+    <link th:href="@{/static/css/style.css}" rel="stylesheet">
+    <link th:href="@{/static/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/static/css/layer/layer.css}" rel="stylesheet">
+    <link th:href="@{/static/css/layui/admin.css}" rel="stylesheet">
+    <link th:href="@{/static/css/element-ui.2.13.0.css}" rel="stylesheet">
+    <link th:href="@{/static/css/font-awesome.min.css}" rel="stylesheet">
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight" id="app">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="signupForm">
+                        <input id="deptId" name="deptId" type="hidden" th:value="${sysDept.deptId}">
+                        <input id="parentId" name="parentId" type="hidden" th:value="${sysDept.parentId}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">部门名称：</label>
+                            <div class="col-sm-8">
+                                <input id="menuName" name="menuName" class="form-control"
+                                       type="text" th:value="${sysDept.deptName}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">负责人：</label>
+                            <div class="col-sm-8">
+                                <input id="leader" name="leader" class="form-control"
+                                       type="text" th:value="${sysDept.leader}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">联系电话：</label>
+                            <div class="col-sm-8">
+                                <input id="phone" name="phone" class="form-control"
+                                       th:value="${sysDept.phone}">
+                            </div>
+                        </div>
+                        <div class="form-group" id="menuNames" style="display: none"></div>
+                        <div class="form-group" id="menuHrefs" style="display: none">
+                            <label class="col-sm-3 control-label">菜单链接：</label>
+                            <div class="col-sm-8">
+                                <input id="menuHref" name="menuHref" class="form-control"
+                                       type="text" th:value="${sysDept.menuHref}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">排序：</label>
+                            <div class="col-sm-8">
+                                <input id="orderNum" name="orderNum" class="form-control"
+                                       type="text" th:value="${sysDept.orderNum}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">状态：</label>
+                            <div class="col-sm-8">
+                                <input id="isShow" name="isShow" type="hidden"
+                                       th:value="${sysDept.status}">
+                                <div class="radio-beauty-container" id="Show">
+                                    <label>
+                                        <span class="radio-name">停用</span>
+                                        <input type="radio" value="1" name="isShow" id="xs" hidden/>
+                                        <label for="xs" class="radio-beauty"></label>
+                                    </label>
+                                    <label>
+                                        <span class="radio-name">正常</span>
+                                        <input type="radio" value="0" name="isShow" id="yc" hidden/>
+                                        <label for="yc" class="radio-beauty"></label>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                                <button type="submit" class="btn btn-primary">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:inline="javascript">
+    var context = [[@{
+        /}]];
+</script>
+<script th:src="@{/static/js/jquery.1.12.4.min.js}"></script>
+<script th:src="@{/static/js/jquery.validate.min.js}"></script>
+<script th:src="@{/static/js/messages_zh.min.js}"></script>
+<script th:src="@{/static/js/layui/layui.js}"></script>
+<script th:src="@{/static/js/layui/lay/modules/layer.js}"></script>
+<script th:src="@{/static/js/vue.2.6.11.js}"></script>
+<script th:src="@{/static/js/element-ui.2.13.0.js}"></script>
+<script th:src="@{/static/js/modules/dept/updateDept.js}"></script>
+</body>
+</html>

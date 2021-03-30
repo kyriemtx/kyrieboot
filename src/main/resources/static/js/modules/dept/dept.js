@@ -28,7 +28,7 @@ var vm = new Vue({
                 maxmin: true,
                 shadeClose: false, // 点击遮罩关闭层
                 area: ['600px', '520px'],
-                content: context + 'dept/update?name='+row.name+"&authority="+row.authority+"&id="+row.id, // iframe的url
+                content: context + 'dept/update?deptId='+row.deptId,
                 end: function () {
                     vm.getDeptList();
                 }
@@ -77,12 +77,12 @@ var vm = new Vue({
             this.getDeptList();
         },
 
-        getRoleList: function () {
+        getDeptList: function () {
             $.ajax({
                 url: context + 'dept/getDeptInfo?page=' + this.current_page + '&page_size=' + this.page_size,
                 type: 'GET',
                 success: function (res) {
-                    vm.tableData = res.respData.depts;
+                    vm.tableData = res.respData.deptTree;
                     vm.total = res.respData.total;
                     vm.page_size = res.respData.page_size;
                     vm.current_page = res.respData.page;
