@@ -105,7 +105,7 @@ public class SysDeptController {
             return AjaxResult.fail("部门信息不能为空");
         }
         AjaxResult ajaxResult = new AjaxResult();
-        try {
+        /*try {
             //获取当前登录用户
             String creatBy = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             sysDept.setCreateBy(creatBy);
@@ -123,7 +123,7 @@ public class SysDeptController {
         }catch (Exception e){
             log.info("新增部门信息异常结束,异常信息：{}",e.getMessage());
             throw new BizException(e.getMessage());
-        }
+        }*/
         log.info("部门信息新增接口，响应结果：{}",JSON.toJSONString(ajaxResult));
         return ajaxResult;
     }

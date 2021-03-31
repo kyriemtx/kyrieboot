@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+    <style>
+        html,
+        body,
+        #container {
+            width: 50%;
+            height: 50%;
+        }
+    </style>
+    <title>地图加载完成</title>
+</head>
+<body>
+<div id="container"></div>
+<script src="https://webapi.amap.com/maps?v=1.4.13&key=fd57103835a92d5cd3a7ad0370ee7ab0"></script>
+<script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
+<script>
+    var map = map = new AMap.Map('container', {
+        resizeEnable: true,
+        viewMode:'3D'
+    });
+    map.on("complete", function(){
+        log.success("地图加载完成！");
+    });
+</script>
+</body>
+
+</html>

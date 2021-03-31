@@ -63,7 +63,7 @@ function getDeptInfo(){
 
 
 function addDept(){
-    var sysDept = {
+   var sysDept = {
         'deptName':$("#deptName").val(),
         "parentName":$("#parentName").val(),
         "leader":$("#leader").val(),
@@ -80,16 +80,16 @@ function addDept(){
         contentType:'application/json',
         success : function(data) {
             if (data.respCode == 200) {
-                if (data.respData.code == 200){
-                    parent.layer.msg("操作成功");
-                } else if (data.respData.code == 501){
-                    parent.layer.msg("该部门已存在，操作失败");
-                } else if (data.respData.code == 500){
-                    parent.layer.msg("操作失败");
-                }
-                var index = parent.layer.getFrameIndex(window.name);
-                parent.layer.close(index);
+                parent.layer.msg("操作成功");
             }
+            if(data.respCode == 501){
+                parent.layer.msg("该部门已存在，操作失败");
+            }
+            if(data.respCode == 500){
+                parent.layer.msg("操作失败");
+            }
+            var index = parent.layer.getFrameIndex(window.name);
+            parent.layer.close(index);
         }
     });
 }
