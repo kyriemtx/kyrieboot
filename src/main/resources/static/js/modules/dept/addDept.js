@@ -1,6 +1,6 @@
 $.validator.setDefaults({
     submitHandler : function() {
-        addRole();
+        addDept();
     }
 });
 
@@ -15,21 +15,6 @@ var app = new Vue({
         expandAll:true
     },
     methods:{
-        getData: function() {
-            $.ajax({
-                cache : true,
-                type : "GET",
-                url : context + 'role/getData',
-                error : function(request) {
-                    parent.layer.alert("Connection error");
-                },
-                success : function(data) {
-                    if (data.respCode == 200) {
-                        app.data = data.respData.menuList;
-                    }
-                }
-            });
-        },
         getCheckedKeys:function () {
             return this.$refs.tree.getCheckedKeys();
         },
@@ -57,38 +42,52 @@ var app = new Vue({
         }
     },
     mounted: function () {
-        this.getData();
         this.validateRule();
     }
 });
 
-function addRole(){
-    var childrenId = app.getCheckedKeys();
-    var roleVO = {
-        'name':$("#name").val(),
-        "authority":$("#authority").val(),
-        'ids':app.getHalfCheckedKeys(childrenId)
+function getDeptInfo(){
+    $.ajax({
+        cache : true,
+        type : "GET",
+        url : context + 'dept/deptList',
+        success : function(data) {
+            if (data.respCode == 200) {
+                for (var i = 0; i < data.respData.length; i++) {
+                    $("#parentName").append((new Option(data.respData[i].deptName )));
+                }
+            }
+        }
+    });
+}
+
+
+function addDept(){
+    var sysDept = {
+        'deptName':$("#deptName").val(),
+        "parentName":$("#parentName").val(),
+        "leader":$("#leader").val(),
+        "phone":$("#phone").val(),
+        "email":$("#email").val(),
+        "status":$('input:radio[name="status"]:checked').val(),
     };
     $.ajax({
         cache : true,
         type : "POST",
-        url : context + 'role/addRole',
-        data :JSON.stringify(roleVO),
+        url : context + 'dept/addDept',
+        data :JSON.stringify(sysDept),
         dataType : 'json',
         contentType:'application/json',
-        error : function(request) {
-            parent.layer.alert("Connection error");
-        },
         success : function(data) {
             if (data.respCode == 200) {
                 if (data.respData.code == 200){
                     parent.layer.msg("操作成功");
                 } else if (data.respData.code == 501){
-                    parent.layer.msg("该角色已存在，操作失败");
+                    parent.layer.msg("该部门已存在，操作失败");
                 } else if (data.respData.code == 500){
                     parent.layer.msg("操作失败");
                 }
-                var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
+                var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
             }
         }

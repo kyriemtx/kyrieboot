@@ -18,10 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -100,10 +97,13 @@ public class SysDeptController {
         return ajaxResult;
     }
 
-    @GetMapping("/addDept")
+    @PostMapping("/addDept")
     @ResponseBody
     public AjaxResult addDept(SysDept sysDept){
         log.info("部门信息新增接口，请求参数：{}",JSON.toJSONString(sysDept));
+        if(ObjectUtils.isEmpty(sysDept)){
+            return AjaxResult.fail("部门信息不能为空");
+        }
         AjaxResult ajaxResult = new AjaxResult();
         try {
             //获取当前登录用户
@@ -129,7 +129,7 @@ public class SysDeptController {
     }
 
 
-    @GetMapping("/updateDept")
+    @PostMapping("/updateDept")
     @ResponseBody
     public AjaxResult updateDept(@RequestBody SysDept sysDept){
         log.info("部门信息编辑接口，请求参数：{}",JSON.toJSONString(sysDept));
@@ -194,6 +194,27 @@ public class SysDeptController {
             }
         }
         return tree;
+    }
+
+
+    @GetMapping("/deptList")
+    @ResponseBody
+    public AjaxResult getDeptInfo(String deptName){
+        log.info("查询部门信息，请求参数：deptName:{}",deptName);
+        SysDept sysDept = new SysDept();
+        sysDept.setDeptName(deptName);
+        AjaxResult ajaxResult = new AjaxResult();
+        try {
+            List<SysDept> sysDepts = sysDeptService.queryAll(sysDept);
+            ajaxResult.setRespCode(RespCodeEnum.SUCCESS.getCode());
+            ajaxResult.setRespDesc(RespCodeEnum.SUCCESS.getMsg());
+            ajaxResult.setRespData(sysDepts);
+        }catch (Exception e){
+            log.info("查询部门信息,异常信息：{}",e.getMessage());
+            throw e;
+        }
+        log.info("查询部门信息，响应结果：{}", JSON.toJSONString(ajaxResult));
+        return ajaxResult;
     }
 
 

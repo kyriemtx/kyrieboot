@@ -343,10 +343,10 @@ html #layuicss-layer {
     height: 42px;
     line-height: 42px;
     border-bottom: 1px solid #eee;
-    font-size: 14px;
-    color: #333;
+    font-size: 17px;
+    color: #303133;
     overflow: hidden;
-    background-color: #F8F8F8;
+    background-color: #673ab7;
     border-radius: 2px 2px 0 0
 }
 
